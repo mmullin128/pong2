@@ -1,7 +1,7 @@
 name: Deploy Dev
 on:
   workflow_run:
-    workflows: ["Build Client Server"]
+    workflows: [Build Client Server]
     types:
       - completed
 jobs:
