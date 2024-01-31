@@ -6,7 +6,7 @@ on:
       - completed
 jobs:
   Deploy Dev:
-    runs-on: self-hosted
+    runs-on: [self-hosted, dev]
     steps:
       - name: Docker Login
         env: 

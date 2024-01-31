@@ -6,7 +6,7 @@ on:
       - completed
 jobs:
   Cleanup:
-    runs-on: self-hosted
+    runs-on: [self-hosted, dev]
     steps:
       - name: Delete Container
         run: |
