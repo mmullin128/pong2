@@ -5,7 +5,7 @@ on:
     types:
       - completed
 jobs:
-  Deploy Dev:
+  Deploy:
     runs-on: [self-hosted, dev]
     steps:
       - name: Docker Login
