@@ -29,7 +29,7 @@ jobs:
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Docker Build
         run: |
-          docker build -t mmullin12/pong ./ClientServer
+          docker build -t mmullin12/pong /ClientServer/DockerFile
       - name: Docker Push
         run: |
           docker push mmullin12/pong
