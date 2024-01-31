@@ -23,10 +23,10 @@ jobs:
           npm run build
       - name: Docker Login
         env: 
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Docker Build
         run: |
           docker build -t mmullin12/pong .
