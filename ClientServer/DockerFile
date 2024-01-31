@@ -4,7 +4,7 @@ FROM node:18-alpine
 ARG PORT=8080
 
 COPY package.json .
-COPY ./dist /src
+COPY ./dist /dist
 
 RUN npm install --include=prod
 
