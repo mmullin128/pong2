@@ -5,7 +5,7 @@ on:
     types:
       - completed
 jobs:
-  Deploy Dev:
+  Test:
     runs-on: ubuntu-latest
     defaults:
       run:
