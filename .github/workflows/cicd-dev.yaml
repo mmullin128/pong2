@@ -30,7 +30,7 @@ jobs:
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Docker Build
         run: |
-          docker build -t mmullin12/pong:latest -f ./ClientServer/DockerFile ./ClientServer
+          docker build -t mmullin12/pong:latest -f ./ClientServer/app.DockerFile ./ClientServer
       - name: Docker Push
         run: |
           docker push mmullin12/pong:latest
@@ -67,5 +67,8 @@ jobs:
         run: |
           npm install --include=dev
       - name: Run End to End Tests
+        env:
+          HOST: "3.22.66.44"
         run: |
           npm run e2e-tests
+          curl http://3.22.66.44
