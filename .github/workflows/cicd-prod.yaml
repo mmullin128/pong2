@@ -37,6 +37,8 @@ jobs:
     needs: [build]
     runs-on: [self-hosted, dev]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Docker Login
         env: 
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -55,5 +57,23 @@ jobs:
           sudo docker ps
       - name: Run Proxy Container
         run: |
-          sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy
+          sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
           sudo docker run --name reverse_proxy_service -d reverse_proxy_image:latest
+  test:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ClientServer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          npm install --include=dev
+      - name: Run End to End Tests
+        env:
+          HOST: "3.22.66.44"
+        run: |
+          npm run e2e-tests
+          curl http://3.22.66.44
