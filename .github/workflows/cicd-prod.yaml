@@ -67,8 +67,8 @@ jobs:
       - name: Run Proxy Container
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
-        #  sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
           sudo docker run --rm  --name reverse_proxy_service -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt -p 80:80 -p 443:443 -d reverse_proxy_image:latest
+        #  sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
       - name: Run Certbot Container
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
