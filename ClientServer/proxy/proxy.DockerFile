@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM nginx
 
-COPY nginx.conf /etc/nginx/conf
+COPY ./nginx.conf /etc/nginx/conf
 
 EXPOSE 80
