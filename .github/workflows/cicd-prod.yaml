@@ -37,6 +37,12 @@ jobs:
     needs: [build]
     runs-on: [self-hosted, prod]
     steps:
+      - name: Verify Snapd
+        run: |
+          sudo snap install hello-world
+      - name: Verify Docker
+        run: |
+          sudo docker run hello-world
       - name: Checkout
         uses: actions/checkout@v4
       - name: Docker Login
@@ -62,6 +68,7 @@ jobs:
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
           sudo docker run --name reverse_proxy_service -p 80:80 -d reverse_proxy_image:latest
+      
   test:
     needs: [build, deploy]
     runs-on: ubuntu-latest
