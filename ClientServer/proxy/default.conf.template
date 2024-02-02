@@ -1,6 +1,9 @@
 server {
-    listen 3000;
     location / {
-        root /html;
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_pass http://172.17.0.2:8080;
     }
 }

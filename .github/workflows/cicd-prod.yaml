@@ -61,7 +61,7 @@ jobs:
       - name: Run Proxy Container
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
-          sudo docker run --name reverse_proxy_service -d reverse_proxy_image:latest
+          sudo docker run --name reverse_proxy_service -p 80:80 -d reverse_proxy_image:latest
   test:
     needs: [build, deploy]
     runs-on: ubuntu-latest
