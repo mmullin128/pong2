@@ -76,7 +76,7 @@ jobs:
           npm install --include=dev
       - name: Run End to End Tests
         env:
-          HOST: "3.22.66.44"
+          HOST: "3.140.210.195"
         run: |
           npm run e2e-tests
-          curl http://3.22.66.44/
+          curl http://3.140.210.195/

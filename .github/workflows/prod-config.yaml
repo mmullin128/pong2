@@ -1,0 +1,16 @@
+name: Server Config
+on:
+  push:
+    branches:
+      - config
+jobs:
+  config:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Install Certbot
+        run: |
+          sudo apt update
+          sudo apt install snapd
+          sudo reboot
+          sudo snap install hello-world
+      
