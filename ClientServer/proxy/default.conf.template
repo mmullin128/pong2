@@ -1,4 +1,9 @@
 server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name paddleballonline.com;
+    ssl_certificate /etc/letsencrypt/live/paddleballonline.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/paddleballonline.com/privkey.pem;
     location / {
         
         proxy_set_header Host $host;

@@ -72,7 +72,7 @@ jobs:
       - name: Run Certbot Container
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
-          sudo docker run -it --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot bash
+        #  sudo docker run -it --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot bash
         #  certbot certonly --webroot
       
   test:
