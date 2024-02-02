@@ -35,7 +35,17 @@ jobs:
         run: |
           sudo apt update
           sudo apt install snapd
-      - name: Reboot
+          sudo snap install hello-world
+      # must reboot after installing snapd
+      #- name: Reboot
+      #  run: |
+      #    sudo reboot
+      - name: Install Certbot
         run: |
-          sudo reboot
+          sudo snap install --classic certbot
+      - name: Prepare Certbot Command
+        run: |
+          sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+
       

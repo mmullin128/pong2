@@ -39,7 +39,7 @@ jobs:
     steps:
       - name: Verify Snapd
         run: |
-          sudo snap install hello-world
+          hello-world
       - name: Verify Docker
         run: |
           sudo docker run hello-world
@@ -68,6 +68,12 @@ jobs:
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
           sudo docker run --name reverse_proxy_service -p 80:80 -d reverse_proxy_image:latest
+      - name: Get and Install SSL Certificate
+        run: |
+          sudo certbot --nginx
+      - name: Test Automatic SSL Renewal
+        run: |
+          sudo certbot renew --dry-run
       
   test:
     needs: [build, deploy]
