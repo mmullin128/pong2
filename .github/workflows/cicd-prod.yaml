@@ -68,14 +68,12 @@ jobs:
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
         #  sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
-          sudo docker run --name reverse_proxy_service -v ./cert_volume:/letsencrypt -v ./cert_volume/certs:/etc/letsencrypt -p 80:80 -p 443:443 -d reverse_proxy_image:latest
-      - name: Get and Install SSL Certificate
+          sudo docker run --rm  --name reverse_proxy_service -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt -p 80:80 -p 443:443 -d reverse_proxy_image:latest
+      - name: Run Certbot Container
         run: |
-          sudo docker build -it --rm --name certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ -v ./cert_volume:/letsencrypt -v ./cert_volume/certs:/etc/letsencrypt certbot bash
+          sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
+          sudo docker run -it --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot bash
         #  certbot certonly --webroot
-      - name: Test Automatic SSL Renewal
-        run: |
-          sudo certbot renew --dry-run
       
   test:
     needs: [build, deploy]
