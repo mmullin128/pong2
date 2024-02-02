@@ -1,3 +1,5 @@
 FROM nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-CMD ["nginx", "-g", "daemon off;"]
+
+RUN mkdir /etc/nginx/templates
+COPY default.conf.template /etc/nginx/templates
+#COPY nginx.conf /etc/nginx/nginx.conf
