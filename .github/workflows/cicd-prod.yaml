@@ -48,13 +48,16 @@ jobs:
       - name: Pull Docker Image
         run: |
           sudo docker pull mmullin12/pong:latest
-      - name: Delete Old Container
+      - name: Delete Old Docker Container
         run: |
           sudo docker rm -f current-container || true
-      - name: Run Container
+      - name: Run Docker Container
         run: |
           sudo docker run -d -p 8080:8080 --name current-container mmullin12/pong:latest
           sudo docker ps
+      - name: Delete Old Proxy Container
+        run: |
+          sudo docker rm -f reverse_proxy_service || true
       - name: Run Proxy Container
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
