@@ -35,7 +35,7 @@ jobs:
           docker push mmullin12/pong:latest
   deploy:
     needs: [build]
-    runs-on: [self-hosted, dev]
+    runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
