@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - config
-  merge:
-    branched:
-      - main
 jobs:
   config:
     runs-on: [self-hosted, prod]
