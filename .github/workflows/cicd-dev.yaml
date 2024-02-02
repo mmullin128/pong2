@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - dev
-      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,8 +51,12 @@ jobs:
           sudo docker rm -f current-container || true
       - name: Run Container
         run: |
-          sudo docker run -d -p 80:8080 --name current-container mmullin12/pong:latest
+          sudo docker run -d -p 8080:8080 --name current-container mmullin12/pong:latest
           sudo docker ps
+      - name: Run Proxy Container
+        run: |
+          sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy
+          sudo docker run --name reverse_proxy_service -d reverse_proxy_image:latest
   test:
     needs: [build, deploy]
     runs-on: ubuntu-latest

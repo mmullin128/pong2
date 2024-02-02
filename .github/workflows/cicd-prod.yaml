@@ -3,14 +3,40 @@ on:
   push:
     branches:
       - main
-      - dev
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        working-directory: ./ClientServer
+        run: |
+          npm install --include=dev
+      - name: Run Unit Tests
+        working-directory: ./ClientServer
+        run: |
+          npm run unit-tests
+      - name: Webpack Bundling
+        working-directory: ./ClientServer
+        run: |
+          npm run build
+      - name: Docker Login
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Docker Build
+        run: |
+          docker build -t mmullin12/pong:latest -f ./ClientServer/app.DockerFile ./ClientServer
+      - name: Docker Push
+        run: |
+          docker push mmullin12/pong:latest
   deploy:
     needs: [build]
     runs-on: [self-hosted, dev]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Docker Login
         env: 
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -25,7 +51,7 @@ jobs:
           sudo docker rm -f current-container || true
       - name: Run Container
         run: |
-          sudo docker run -d -p 3000:3000 --name current-container mmullin12/pong:latest
+          sudo docker run -d -p 8080:8080 --name current-container mmullin12/pong:latest
           sudo docker ps
       - name: Run Proxy Container
         run: |
