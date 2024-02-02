@@ -9,7 +9,7 @@ COPY default.conf.template /etc/nginx/templates
 
 # Install Snapd
 RUN apt update
-RUN apt install snapd
+RUN yes | apt install snapd
 RUN snap install hello-world
 
 # Install Certbot
