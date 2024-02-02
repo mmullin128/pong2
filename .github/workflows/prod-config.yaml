@@ -35,5 +35,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install snapd
+      - name: Reboot
+        run: |
           sudo reboot
       
