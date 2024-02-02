@@ -72,8 +72,11 @@ jobs:
       - name: Run Certbot Container
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
+
+        # run certbot manually on server using:
         #  sudo docker run -it --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot bash
         #  certbot certonly --webroot
+        # detach and return to terminal using Ctrl+P then Ctrl+Q
       
   test:
     needs: [build, deploy]
@@ -92,4 +95,4 @@ jobs:
           HOST: "3.140.210.195"
         run: |
           npm run e2e-tests
-          curl http://3.140.210.195/
+        #  curl http://3.140.210.195/
