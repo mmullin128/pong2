@@ -79,5 +79,4 @@ jobs:
           HOST: "3.22.66.44"
         run: |
           npm run e2e-tests
-          curl http://3.22.66.44:8080
           curl http://3.22.66.44/
