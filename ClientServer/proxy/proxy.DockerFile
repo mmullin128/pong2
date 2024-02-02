@@ -1,6 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM nginx
-
-COPY ./nginx.conf /etc/nginx/conf
-
-EXPOSE 80
+COPY nginx.conf /etc/nginx/nginx.conf
+CMD ["nginx", "-g", "daemon off;"]
