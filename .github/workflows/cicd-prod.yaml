@@ -69,9 +69,11 @@ jobs:
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
           sudo docker run --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot ./certbot_entry.sh
-      - name: System Clean
+      - name: Clean
         run: |
-          sudo docker system prune
+          sudo docker system prune -a -f
+          sudo docker ps -a
+          sudo docker images ls
   test:
     needs: [build, deploy]
     runs-on: ubuntu-latest
