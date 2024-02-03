@@ -37,9 +37,6 @@ jobs:
     needs: [build]
     runs-on: [self-hosted, prod]
     steps:
-      - name: Verify Snapd
-        run: |
-          hello-world
       - name: Verify Docker
         run: |
           sudo docker run hello-world
