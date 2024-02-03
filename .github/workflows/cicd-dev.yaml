@@ -5,6 +5,20 @@ on:
       - dev
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        working-directory: ./ClientServer
+        run: |
+          npm install --include=dev
+      - name: Run Unit Tests
+        working-directory: ./ClientServer
+        run: |
+          npm run unit-tests
+  deploy:
+    needs: [build]
     runs-on: [self-hosted, dev]
     steps:
       - name: Verify Docker
@@ -14,34 +28,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 'dev'
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-      - name: Install Dependencies
-        working-directory: ./ClientServer
-        run: |
-          npm install --include=dev
-      - name: Run Unit Tests
-        working-directory: ./ClientServer
-        run: |
-          npm run unit-tests
-      - name: Webpack Bundling
-        working-directory: ./ClientServer
-        run: |
-          npm run build
       - name: Docker Build
         run: |
-          docker build -t clientServerImage -f ./ClientServer/app.DockerFile ./ClientServer
+          docker build -t testImage -f ./ClientServer/appDev.DockerFile ./ClientServer
       - name: Delete Old Docker Container
         run: |
           sudo docker rm -f current-container || true
       - name: Run Docker Container
         run: |
-          sudo docker run -d -p 80:8080 --name current-container clientServerImage
+          sudo docker run -d -p 80:8080 --name current-container testImage
           sudo docker ps
   test:
-    needs: [ build ]
+    needs: [ build, deploy ]
     runs-on: ubuntu-latest
     defaults:
       run:
