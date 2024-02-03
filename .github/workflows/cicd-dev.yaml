@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: 'dev'
       - name: Install Dependencies
         working-directory: ./ClientServer
         run: |
@@ -17,6 +19,22 @@ jobs:
         working-directory: ./ClientServer
         run: |
           npm run unit-tests
+      - name: Webpack Bundling
+        working-directory: ./ClientServer
+        run: |
+          npm run build
+      - name: Docker Login
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Docker Build
+        run: |
+          docker build -t mmullin12/pong:latest -f ./ClientServer/app.DockerFile ./ClientServer
+      - name: Docker Push
+        run: |
+          docker push mmullin12/pong:latest
   deploy:
     needs: [build]
     runs-on: [self-hosted, dev]
@@ -28,15 +46,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 'dev'
-      - name: Docker Build
+      - name: Docker Login
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          sudo docker build -t test-image -f ./ClientServer/app.DockerFile ./ClientServer
+          sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Pull Docker Image
+        run: |
+          sudo docker pull mmullin12/pong:latest
       - name: Delete Old Docker Container
         run: |
           sudo docker rm -f current-container || true
       - name: Run Docker Container
         run: |
-          sudo docker run -d -p 80:8080 --name current-container test-image npm build-start
+          sudo docker run -d -p 8080:8080 --name current-container mmullin12/pong:latest
+          sudo docker ps
       - name: Clean
         run: |
           sudo docker system prune
