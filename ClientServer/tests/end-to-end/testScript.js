@@ -5,6 +5,12 @@ async function content(path) {
     return await readFile(path, 'utf8');
 }
   
-const text = await content(path.resolve(__dirname, 'htmlOutput.txt'));
+async function runTests() {
+    const text = await content(path.resolve(__dirname, 'htmlOutput.txt'));
+    receivedHtml(text);
+}
 
-console.log(text);
+
+function receivedHtml(text) {
+    console.log(text);
+}
