@@ -7,8 +7,7 @@
     "unit-tests": "jest",
     "build": "echo TODO: Build",
     "start": "node ./dist/server/index.js",
-    "e2e-tests": "node ./tests/end-to-end/testScript.js",
-    "build-start": "npm build && echo 'build successful' && npm start && echo 'started'"
+    "e2e-tests": "node ./tests/end-to-end/testScript.js"
   },
   "keywords": [],
   "author": "",
