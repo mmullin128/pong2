@@ -3,15 +3,15 @@ const express = require('express');
 
 function init(port, options={}) {
     const app = express();
-    app.use('/', express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, "../public")));
 
     const getOptions = {
         root: path.join(__dirname, "../public")
     }
 
-    //app.get('/', (req, res) => {
-    //    res.sendFile("index.html", getOptions);
-    //});
+    app.get('/', (req, res) => {
+        res.sendFile("index.html", getOptions);
+    });
 
     if (options["close"]) {
         const server = app.listen(port, () => {
