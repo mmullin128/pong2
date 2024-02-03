@@ -30,7 +30,7 @@ jobs:
           ref: 'dev'
       - name: Docker Build
         run: |
-          sudo docker build -t test-image -f ./ClientServer/appDev.DockerFile ./ClientServer
+          sudo docker build -t test-image -f ./ClientServer/app.DockerFile ./ClientServer
       - name: Delete Old Docker Container
         run: |
           sudo docker rm -f current-container || true
