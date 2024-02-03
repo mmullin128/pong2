@@ -14,3 +14,6 @@ async function runTests() {
 function receivedHtml(text) {
     console.log(text);
 }
+
+
+runTests();
