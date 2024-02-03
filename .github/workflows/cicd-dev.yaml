@@ -30,13 +30,14 @@ jobs:
           ref: 'dev'
       - name: Docker Build
         run: |
-          docker build -t testImage -f ./ClientServer/appDev.DockerFile ./ClientServer
+          sudo docker build -t testImage -f ./ClientServer/appDev.DockerFile ./ClientServer
       - name: Delete Old Docker Container
         run: |
           sudo docker rm -f current-container || true
       - name: Run Docker Container
         run: |
           sudo docker run -d -p 80:8080 --name current-container testImage
+          sudo docker system prune
           sudo docker ps
   test:
     needs: [ build, deploy ]
