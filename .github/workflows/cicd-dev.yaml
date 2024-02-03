@@ -64,7 +64,7 @@ jobs:
           sudo docker ps
       - name: Clean
         run: |
-          sudo docker system prune
+          sudo docker system prune -a -f
           sudo docker ps -a
           sudo docker images ls
   test:
