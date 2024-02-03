@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 RUN apt-get update -y && apt-get install -y certbot
 
+COPY certbot_entry.sh certbot_entry.sh
+
 # Install Snapd
 #RUN apt update -y
 #RUN apt install snapd -y

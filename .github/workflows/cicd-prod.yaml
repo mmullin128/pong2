@@ -64,14 +64,15 @@ jobs:
       - name: Delete Old Proxy Container
         run: |
           sudo docker rm -f reverse_proxy_service || true
-      - name: Run Proxy Container
+      - name: Build and Run Proxy Container
         run: |
           sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
           sudo docker run --rm  --name reverse_proxy_service -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt -p 80:80 -p 443:443 -d reverse_proxy_image:latest
         #  sudo docker build -t reverse_proxy_image:latest -f ./ClientServer/proxy/proxy.DockerFile ./ClientServer/proxy/
-      - name: Run Certbot Container
+      - name: Build and Run Certbot Container
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
+          sudo docker run --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot ./certbot_entry.sh
 
         # run certbot manually on server using:
         #  sudo docker run -it --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot bash
