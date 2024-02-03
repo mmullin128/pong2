@@ -69,7 +69,6 @@ jobs:
       - name: Build and Run Certbot Container
         run: |
           sudo docker build -t certbot -f ./ClientServer/proxy/certbot.DockerFile ./ClientServer/proxy/ 
-          sudo chmod +x ./certbot_entry.sh
           sudo docker run --rm --name certbot -v CertVolume:/letsencrypt -v CertsLocation:/etc/letsencrypt certbot ./certbot_entry.sh
 
         # run certbot manually on server using:
