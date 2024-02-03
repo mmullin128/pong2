@@ -6,13 +6,13 @@ async function content(path) {
 }
   
 async function runTests() {
-    const text = await content(path.resolve(__dirname, 'htmlOutput.txt'));
-    receivedHtml(text);
+    const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
+    receivedHtml(html);
 }
 
 
-function receivedHtml(text) {
-    console.log(text);
+function receivedHtml(html) {
+    console.log(html);
 }
 
 
