@@ -1,7 +1,7 @@
 
 
-function App() {
-    
+export default function App() {
+    return (
+        <div>Root Component</div>
+    );
 }
-
-module.exports = App;

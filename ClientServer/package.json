@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "unit-tests": "jest",
-    "build": "echo TODO: build",
+    "build": "webpack --config ./src/webpack.config.js",
     "start": "node ./dist/server/index.js",
     "e2e-tests": "node ./tests/end-to-end/testScript.js"
   },
@@ -13,12 +13,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+
     "jest": "^29.7.0",
     "jsdom": "^24.0.0",
-    "react": "^18.2.0",
+    
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "html-webpack-plugin": "^5.6.0",
     "react-dom": "^18.2.0",
+    "style-loader": "^3.3.4",
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
+
   },
   "dependencies": {
     "express": "^4.18.2"
