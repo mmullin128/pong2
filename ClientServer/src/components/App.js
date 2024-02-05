@@ -8,17 +8,20 @@ export default function App() {
         if (pageId == "back") {
             //remove last item in page tree
             setPageTree(pageTree.slice(0,pageTree.length));
+            setCurrentPage(pageTree[pageTree.length-1]);
             return;
         }
         if (pageId == pageTree[pageTree.length-1]) return; 
         let newTree = pageTree;
         newTree.push(pageId);
         setPageTree(newTree);
+        setCurrentPage(pageTree[pageTree.length-1]);
         console.log(newTree);
         console.log(pageTree);
     }
 
     const [pageTree, setPageTree] = useState(["main"]);
+    const [currentPage, setCurrentPage] = useState("main");
     const pages = {
         "main": <MainMenu renderPage={renderPage}/>,
         "username": <UsernameMenu renderPage={renderPage}/>,
@@ -30,7 +33,7 @@ export default function App() {
             {pageTree}
             {pageTree.length}
             {pageTree[pageTree.length-1]}
-            {pages[pageTree[pageTree.length-1]]}
+            {pages[currentPage]}
         </div>
     );
 }
