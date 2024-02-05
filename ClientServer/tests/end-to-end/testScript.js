@@ -13,19 +13,17 @@ async function content(path) {
 async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
     console.log(html);
-    const window = createDom(html);
-    window.document.addEventListener('DOMContentLoaded', () => {
-        verifyHtml(window);
-        checkForApp(window);
-    });
+    const window = await createDom(html);
+    verifyHtml(window);
+    checkForApp(window);
 
 }
 
-function createDom(html) {
+async function createDom(html) {
     console.log(URL);
     //const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
-    const { window } = JSDOM.fromURL("http://3.22.66.44/", { runScripts: "dangerously", resources: "usable" } );
-    return window;
+    const dom = await JSDOM.fromURL("http://3.22.66.44/", { runScripts: "dangerously", resources: "usable" } );
+    return dom.window;
 }
 
 function verifyHtml(window) {
