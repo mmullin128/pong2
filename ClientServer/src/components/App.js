@@ -23,6 +23,8 @@ export default function App() {
     };
 
     let currentPage = pages[pageTree[-1]];
+    console.log(pageTree);
+    console.log(currentPage);
     return (
         <div id="app">
             {currentPage}
