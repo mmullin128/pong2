@@ -12,8 +12,10 @@ export default function App() {
         }
         if (pageId == pageTree[pageTree.length-1]) return; 
         let newTree = pageTree;
-        if (pageId == pageTree[pageTree.length-1]) return;
+        newTree.push(pageId);
         setPageTree(newTree);
+        console.log(newTree);
+        console.log(pageTree);
     }
 
     const [pageTree, setPageTree] = useState(["main"]);
@@ -22,6 +24,7 @@ export default function App() {
         "username": <UsernameMenu renderPage={renderPage}/>,
         "private-game": <PrivateGameMenu renderPage={renderPage}/>
     };
+
     return (
         <div id="app">
             {pages[pageTree[pageTree.length-1]]}
