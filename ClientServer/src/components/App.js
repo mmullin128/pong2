@@ -9,6 +9,7 @@ export default function App() {
             //remove last item in page tree
             setPageTree(pageTree.slice(0,pageTree.length));
             setCurrentPage(pageTree[pageTree.length-1]);
+            console.log(pageTree);
             return;
         }
         if (pageId == pageTree[pageTree.length-1]) return; 
