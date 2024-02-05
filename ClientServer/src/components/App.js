@@ -27,7 +27,7 @@ export default function App() {
     console.log(currentPage);
     return (
         <div id="app">
-            {currentPage}
+            {pages[currentPage]}
         </div>
     );
 }
