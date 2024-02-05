@@ -27,6 +27,8 @@ export default function App() {
 
     return (
         <div id="app">
+            {pageTree}
+            {pageTree.length}
             {pageTree[pageTree.length-1]}
             {pages[pageTree[pageTree.length-1]]}
         </div>
