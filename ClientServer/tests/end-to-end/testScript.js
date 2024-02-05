@@ -14,8 +14,10 @@ async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
     console.log(html);
     const window = await createDom(html);
-    verifyHtml(window);
-    checkForApp(window);
+    window.onload = () => {
+        verifyHtml(window);
+        checkForApp(window);
+    }
 
 }
 
