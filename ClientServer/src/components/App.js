@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MainMenu from './MainMenu.js';
 import UsernameMenu from './UsernameMenu.js';
+import PrivateGameMenu from './PrivateGameMenu.js';
 export default function App() {
 
     function renderPage(pageId) {
