@@ -12,6 +12,7 @@ async function content(path) {
   
 async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
+    console.log(html);
     const window = createDom(html);
     verifyHtml(window);
     checkForApp(window);
