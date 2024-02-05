@@ -36,20 +36,19 @@ function verifyHtml(window) {
     }
 
 }
-
-async function checkForApp(window) {
+const checkForApp = () => {return new Promise((resolve,reject) => {
     const checkInterval = setInterval(() => {
         const element = window.document.getElementById("app");
         if (!(element == null)) {
-            return "Found app";
+            resolve("Found App");
         }
     }, 20);
     const timeOut = setTimeout(() => {
         clearInterval(checkInterval);
-        return "Timed Out"
+        resolve("TimedOut");
     },
     5000)
-}
+})}
 
 
 runTests();
