@@ -3,6 +3,7 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+const URL = process.argv[2];
 
 
 async function content(path) {  
@@ -17,7 +18,7 @@ async function runTests() {
 }
 
 function createDom(html) {
-    const { window } = new JSDOM(html, { runScripts: "dangerously" });
+    const { window } = new JSDOM(html, { runScripts: "dangerously"});
     return window;
 }
 

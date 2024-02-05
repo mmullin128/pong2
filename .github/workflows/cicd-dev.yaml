@@ -84,4 +84,4 @@ jobs:
       - name: Run End to End Tests
         run: |
           curl http://3.22.66.44/ -o ./tests/end-to-end/htmlOutput.txt
-          npm run e2e-tests
+          npm run e2e-tests -- --http://3.22.66.44/
