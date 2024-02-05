@@ -10,8 +10,11 @@ export default function App() {
             setPageTree(pageTree.slice(0,pageTree.length));
             return;
         }
-        const newTree = pageTree;
+        if (pageId == pageTree[pageTree.length-1]) return; 
+        let newTree = pageTree;
         newTree.push(pageId);
+        console.log(newTree)
+        if (pageId == pageTree[pageTree.length-1]) return; 
         setPageTree(newTree);
     }
 
