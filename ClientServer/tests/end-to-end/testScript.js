@@ -1,26 +1,18 @@
-const { readFile } = require('fs/promises');
-const path = require('path');
 const jsdom = require("jsdom");
-const { constrainedMemory } = require('process');
 const { JSDOM } = jsdom;
 
 const URL = process.argv[2];
 
 
-async function content(path) {  
-    return await readFile(path, 'utf8');
-}
-  
+
 async function runTests() {
-    const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
-    console.log(html);
-    const window = await createDom(html);
+    const window = await createDom();
     verifyHtml(window);
-    const message = await checkForApp(window);
-    console.log(message);
+    const appElement = await checkForApp(window);
+    console.log(appElement.innerHtml);
 }
 
-async function createDom(html) {
+async function createDom() {
     console.log(URL);
     //const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
     const dom = await JSDOM.fromURL("http://3.22.66.44/", { runScripts: "dangerously", resources: "usable" } );
@@ -30,22 +22,20 @@ async function createDom(html) {
 function verifyHtml(window) {
     const element = window.document.getElementById("root");
     if (element == null) {
-        console.log("ERROR: Couldn't find root component");
-    } else {
-        console.log("Found Root Element");
+        throw new Error("Couldn't find root element");
     }
-
 }
+
 const checkForApp = (window) => {return new Promise((resolve,reject) => {
     const checkInterval = setInterval(() => {
         const element = window.document.getElementById("app");
         if (!(element == null)) {
-            resolve("Found App");
+            resolve(element);
         }
     }, 20);
     const timeOut = setTimeout(() => {
         clearInterval(checkInterval);
-        resolve("TimedOut");
+        reject("Couldn't find app element");
     },
     5000)
 })}
