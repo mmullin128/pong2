@@ -25,7 +25,7 @@ function createDom(html) {
         strictSSL: false,
     });
     console.log(URL);
-    const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": URL });
+    const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
     return window;
 }
 
