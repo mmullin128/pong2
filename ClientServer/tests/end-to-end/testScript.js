@@ -22,7 +22,8 @@ function createDom(html) {
     const resourceLoader = new jsdom.ResourceLoader({
         proxy: URL,
         strictSSL: false,
-    })
+    });
+    console.log(URL);
     const { window } = new JSDOM(html, { runScripts: "dangerously", resources: resourceLoader });
     return window;
 }
