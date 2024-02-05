@@ -12,13 +12,18 @@ async function content(path) {
   
 async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
+    
     const window = createDom(html);
     checkForApp(window);
 
 }
 
 function createDom(html) {
-    const { window } = new JSDOM(html, { runScripts: "dangerously"});
+    const resourceLoader = new jsdom.ResourceLoader({
+        proxy: URL,
+        strictSSL: false,
+    })
+    const { window } = new JSDOM(html, { runScripts: "dangerously", resources: resourceLoader });
     return window;
 }
 
