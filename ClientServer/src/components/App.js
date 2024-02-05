@@ -19,7 +19,7 @@ export default function App() {
     }
 
     const [pageTree, setPageTree] = useState(["main"]);
-    let pages = {
+    const pages = {
         "main": <MainMenu renderPage={renderPage}/>,
         "username": <UsernameMenu renderPage={renderPage}/>,
         "private-game": <PrivateGameMenu renderPage={renderPage}/>
@@ -27,6 +27,7 @@ export default function App() {
 
     return (
         <div id="app">
+            {pageTree[pageTree.length-1]}
             {pages[pageTree[pageTree.length-1]]}
         </div>
     );
