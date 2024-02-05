@@ -14,16 +14,14 @@ async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
     console.log(html);
     const window = createDom(html);
-    verifyHtml(window);
-    checkForApp(window);
+    window.document.addEventListener('DOMContentLoaded', () => {
+        verifyHtml(window);
+        checkForApp(window);
+    });
 
 }
 
 function createDom(html) {
-    const resourceLoader = new jsdom.ResourceLoader({
-        proxy: URL,
-        strictSSL: false,
-    });
     console.log(URL);
     const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
     return window;
