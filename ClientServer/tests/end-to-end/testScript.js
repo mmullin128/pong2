@@ -36,7 +36,7 @@ function verifyHtml(window) {
     }
 
 }
-const checkForApp = () => {return new Promise((resolve,reject) => {
+const checkForApp = (window) => {return new Promise((resolve,reject) => {
     const checkInterval = setInterval(() => {
         const element = window.document.getElementById("app");
         if (!(element == null)) {
