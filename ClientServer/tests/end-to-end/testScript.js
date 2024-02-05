@@ -9,7 +9,7 @@ async function runTests() {
     const window = await createDom();
     verifyHtml(window);
     const appNode = await checkForApp(window);
-    console.log(appNode.id);
+    console.log(appNode.innerHTML);
 }
 
 async function createDom() {
