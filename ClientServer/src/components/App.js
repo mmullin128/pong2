@@ -22,7 +22,7 @@ export default function App() {
         "private-game": <PrivateGameMenu renderPage={renderPage}/>
     };
 
-    let currentPage = pages[pageTree[-1]];
+    let currentPage = pages[pageTree.length-1];
     console.log(pageTree);
     console.log(currentPage);
     return (
