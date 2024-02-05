@@ -28,6 +28,14 @@ function createDom(html) {
     return window;
 }
 
+function verifyHtml(window) {
+    const element = window.document.getElementById("root");
+    if (element == null) {
+        console.log("ERROR: Couldn't find root component")
+    }
+
+}
+
 function checkForApp(window) {
     const element = window.document.getElementById("app");
     console.log(element);
