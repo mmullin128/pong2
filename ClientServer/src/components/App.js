@@ -30,7 +30,7 @@ export default function App() {
     console.log(currentPage);
     return (
         <div id="app">
-            {pages[pageTree.length-1]}
+            {pages[pageTree[pageTree.length-1]]}
         </div>
     );
 }
