@@ -2,6 +2,6 @@
 
 export default function App() {
     return (
-        <div>Root Component</div>
+        <div id="app">Root Component</div>
     );
 }
