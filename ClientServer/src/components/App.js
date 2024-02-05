@@ -9,16 +9,11 @@ export default function App() {
             //remove last item in page tree
             setCurrentPage(pageTree[pageTree.length-2]);
             setPageTree(pageTree.slice(0,pageTree.length-1));
-            console.log(pageTree);
             return;
         }
         if (pageId == pageTree[pageTree.length-1]) return; 
-        let newTree = pageTree;
-        newTree.push(pageId);
         setPageTree(newTree);
         setCurrentPage(pageTree[pageTree.length-1]);
-        console.log(newTree);
-        console.log(pageTree);
     }
 
     const [pageTree, setPageTree] = useState(["main"]);
