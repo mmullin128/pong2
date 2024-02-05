@@ -7,7 +7,7 @@ export default function App() {
     function renderPage(pageId) {
         if (pageId == "back") {
             //remove last item in page tree
-            setPageTree(pageTree.slice(0,pageTree.length));
+            setPageTree(pageTree.slice(0,pageTree.length-1));
             setCurrentPage(pageTree[pageTree.length-1]);
             console.log(pageTree);
             return;
