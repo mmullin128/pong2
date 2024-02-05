@@ -8,8 +8,8 @@ const URL = process.argv[2];
 async function runTests() {
     const window = await createDom();
     verifyHtml(window);
-    const appElement = await checkForApp(window);
-    console.log(appElement);
+    const appNode = await checkForApp(window);
+    console.log(appNode.element.innerHTML);
 }
 
 async function createDom() {
