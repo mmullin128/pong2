@@ -12,8 +12,8 @@ async function content(path) {
   
 async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
-    
     const window = createDom(html);
+    verifyHtml(window);
     checkForApp(window);
 
 }
@@ -31,7 +31,9 @@ function createDom(html) {
 function verifyHtml(window) {
     const element = window.document.getElementById("root");
     if (element == null) {
-        console.log("ERROR: Couldn't find root component")
+        console.log("ERROR: Couldn't find root component");
+    } else {
+        console.log("Found Root Element");
     }
 
 }
