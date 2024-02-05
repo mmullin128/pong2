@@ -23,7 +23,8 @@ async function runTests() {
 
 function createDom(html) {
     console.log(URL);
-    const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
+    //const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
+    const { window } = JSDOM.fromURL("http://3.22.66.44/", { runScripts: "dangerously", resources: "usable" } );
     return window;
 }
 
