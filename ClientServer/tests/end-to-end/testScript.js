@@ -1,6 +1,7 @@
 const { readFile } = require('fs/promises');
 const path = require('path');
 const jsdom = require("jsdom");
+const { constrainedMemory } = require('process');
 const { JSDOM } = jsdom;
 
 const URL = process.argv[2];
@@ -14,11 +15,9 @@ async function runTests() {
     const html = await content(path.resolve(__dirname, 'htmlOutput.txt'));
     console.log(html);
     const window = await createDom(html);
-    window.onload = () => {
-        verifyHtml(window);
-        checkForApp(window);
-    }
-
+    verifyHtml(window);
+    const message = await checkForApp(window);
+    console.log(message);
 }
 
 async function createDom(html) {
@@ -38,9 +37,18 @@ function verifyHtml(window) {
 
 }
 
-function checkForApp(window) {
-    const element = window.document.getElementById("app");
-    console.log(element);
+async function checkForApp(window) {
+    const checkInterval = setInterval(() => {
+        const element = window.document.getElementById("app");
+        if (!(element == null)) {
+            return "Found app";
+        }
+    }, 20);
+    const timeOut = setTimeout(() => {
+        clearInterval(checkInterval);
+        return "Timed Out"
+    },
+    5000)
 }
 
 
