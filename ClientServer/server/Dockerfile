@@ -19,4 +19,4 @@ ENV PORT ${PORT}
 EXPOSE ${PORT}
 
 #CMD ["npm", "build && start"]
-ENTRYPOINT [ "app_entry.sh" ]
+#ENTRYPOINT [ "app_entry.sh" ]
