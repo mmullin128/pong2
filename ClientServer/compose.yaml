@@ -3,13 +3,13 @@ services:
     build: ./server
     ports:
       - "8080:8080"
-  certbot:
-    build: ./certbot
-    depends_on:
-      - proxy
-    volumes:
-      - ./certVolume:/letsencrypt
-      - ./certVolume/certs:/etc/letsencrypt
+  #certbot:
+  #  build: ./certbot
+  #  depends_on:
+  #    - proxy
+  #  volumes:
+  #    - ./certVolume:/letsencrypt
+  #    - ./certVolume/certs:/etc/letsencrypt
   proxy:
     build: ./proxy
     ports:
