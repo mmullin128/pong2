@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "unit-tests": "jest",
-    "build": "webpack --config ./src/webpack.config.js",
-    "start": "node ./dist/server/index.js",
-    "e2e-tests": "node ./tests/end-to-end/testScript.js"
+    "build": "webpack --config ./webpack.config.js",
+    "start": "node ./dist/server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +27,7 @@
     "webpack-cli": "^5.1.4"
 
   },
+  
   "dependencies": {
     "express": "^4.18.2"
   }

@@ -1,0 +1,18 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+  certbot:
+    build: ./certbot
+    volumes:
+      - ./certVolume:/letsencrypt
+      - ./certVolume/certs:/etc/letsencrypt
+  proxy:
+    build: ./proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certVolume:/letsencrypt
+      - ./certVolume/certs:/etc/letsencrypt
