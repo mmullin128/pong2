@@ -1,7 +1,9 @@
 FROM nginx:alpine
 
 
-RUN apk add --no-cache --upgrade certbot
+RUN apk add certbot
+RUN apk update
+RUN apk upgrade
 RUN mkdir /etc/nginx/templates
 COPY default.conf.template /etc/nginx/templates
 
