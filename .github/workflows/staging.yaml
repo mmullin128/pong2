@@ -5,7 +5,7 @@ on:
       - staging
 jobs:
   test:
-    runs-on: [self-hosted, dev]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
