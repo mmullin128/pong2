@@ -12,5 +12,6 @@ jobs:
         with:
           ref: staging
       - name: Build
+        working-directory: ./ClientServer
         run: |
           docker compose up
