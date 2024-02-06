@@ -1,0 +1,16 @@
+name: Staging
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: staging
+      - name: Build
+        run: |
+          docker compose up
