@@ -6,6 +6,7 @@ COPY certbot_entry.sh ./certbot_entry.sh
 
 RUN chmod +x ./certbot_entry.sh
 
+ENTRYPOINT [ "./certbot_entry.sh" ]
 # Install Snapd
 #RUN apt update -y
 #RUN apt install snapd -y
