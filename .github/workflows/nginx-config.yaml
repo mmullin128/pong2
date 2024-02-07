@@ -21,6 +21,7 @@ jobs:
           sudo docker compose run --rm -d nginx
           sudo docker volume ls
           sudo docker ps -a
+          sudo docker volume inspect clientserver_nginx-configs
 
 
         
