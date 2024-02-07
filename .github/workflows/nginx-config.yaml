@@ -17,11 +17,11 @@ jobs:
           sudo docker compose kill nginx || true
           sudo docker compose rm -f -s nginx || true
           sudo docker image rm clientserver-nginx || true
-          sudo docker compose build nginx
-          sudo docker compose run --rm -d nginx
+          sudo docker compose create nginx
+          sudo docker compose start nginx
           sudo docker volume ls
           sudo docker ps -a
-          sudo docker volume inspect clientserver_nginx-configs
+          sudo docker image ls
 
 
         
