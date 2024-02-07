@@ -1,10 +1,10 @@
-name: Setup Certbot
+name: Build Certbot
 on:
   push:
     branches:
       - certbot-config
 jobs:
-  build:
+  build-certbot:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout

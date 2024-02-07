@@ -1,10 +1,10 @@
-name: Run Test
+name: Build Bash
 on:
   push:
     branches:
       - bash-config
 jobs:
-  build:
+  build-bash:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
