@@ -1,20 +1,38 @@
 services:
-  server:
-    build: ./server
-    ports:
-      - "8080:8080"
-  #certbot:
-  #  build: ./certbot
-  #  depends_on:
-  #    - proxy
-  #  volumes:
-  #    - ./certVolume:/letsencrypt
-  #    - ./certVolume/certs:/etc/letsencrypt
-  proxy:
-    build: ./proxy
+  builder:
+    build: ./builder
+    volumes:
+      - public:/public
+      - ./builder/src:/src
+  certbot:
+    build: ./certbot
+    volumes:
+      - letsencrypt:/letsencrypt
+      - certs:/etc/letsencrypt
+      - cmd:/cmd
+      - nginx-configs:/config
+    environment:
+      - PUBLIC_DIR=/usr/share/nginx/html
+      - LETS_ENCRYPT_DIR=/letsencrypt/
+    stdin_open: true
+    tty: true
+  nginx:
+    build: ./nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./certVolume:/letsencrypt
-      - ./certVolume/certs:/etc/letsencrypt
+      - letsencrypt:/letsencrypt
+      - certs:/etc/letsencrypt
+      - cmd:/cmd
+      - public:/usr/share/nginx/html:ro
+      - nginx-configs:/etc/nginx/conf.d
+    environment:
+      - PUBLIC_DIR=/usr/share/nginx/html
+      - LETS_ENCRYPT_DIR=/letsencrypt/
+volumes:
+  letsencrypt:
+  certs:
+  cmd:
+  public:
+  nginx-configs:

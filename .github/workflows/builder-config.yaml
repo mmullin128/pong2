@@ -1,0 +1,19 @@
+name: Setup Builder
+on:
+  push:
+    branches:
+      - builder-config
+jobs:
+  build:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: builder-config
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          docker image rm clientserver-builder || true
+          docker compose build builder
+        

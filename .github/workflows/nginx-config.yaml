@@ -1,0 +1,23 @@
+name: Setup NGINX
+on:
+  push:
+    branches:
+      - nginx-config
+jobs:
+  build:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: nginx-config
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          docker compose stop nginx || true
+          docker compose rm nginx || true
+          docker image rm clientserver-nginx || true
+          docker compose build nginx
+          docker compose run --rm -d nginx
+
+        

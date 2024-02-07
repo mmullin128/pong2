@@ -1,0 +1,19 @@
+name: Run Builder
+on:
+  push:
+    branches:
+      - builder
+jobs:
+  build:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: builder
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          docker compose run --rm -d builder
+
+        

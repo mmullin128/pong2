@@ -1,0 +1,23 @@
+name: Setup Certbot
+on:
+  push:
+    branches:
+      - certbot-config
+jobs:
+  build:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: certbot-config
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          docker compose stop certbot || true
+          docker compose rm certbot || true
+          docker image rm clientserver-certbot || true
+          docker compose build certbot
+          docker compose run --rm -d certbot
+
+        

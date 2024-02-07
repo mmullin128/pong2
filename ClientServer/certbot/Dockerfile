@@ -1,20 +1,9 @@
 FROM ubuntu:latest
 
-RUN apt-get update -y && apt-get install -y certbot
+RUN apt-get update -y && apt-get install certbot -y
 
-COPY certbot_entry.sh ./certbot_entry.sh
+COPY ./entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
-RUN chmod +x ./certbot_entry.sh
-
-ENTRYPOINT [ "./certbot_entry.sh" ]
-# Install Snapd
-#RUN apt update -y
-#RUN apt install snapd -y
-#RUN snap install hello-world
-
-# Install Certbot
-#RUN snap install --classic certbot
-
-
-# Prepare Certbot Command
+ENTRYPOINT [ "./entrypoint.sh" ]
 #RUN ln -s /snap/bin/certbot /usr/bin/certbot
