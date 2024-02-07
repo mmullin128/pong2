@@ -2,6 +2,7 @@ name: Run Test
 on:
   push:
     branches:
+      - nginx-config
       - test
 jobs:
   build:
@@ -15,6 +16,7 @@ jobs:
         working-directory: ./ClientServer
         run: |
           sudo docker image rm clientserver-test || true
-          sudo docker compose build test
+          sudo docker compose rm test || true
+          sudo docker compose create --build test
           
         
