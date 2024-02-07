@@ -6,20 +6,20 @@ services:
       - ./builder/src:/src
     networks:
       - default
-  #certbot:
-  #  build: ./certbot
-  #  volumes:
-  #    - letsencrypt:/letsencrypt
-  #    - certs:/etc/letsencrypt
-  #    - cmd:/cmd
-  #    - nginx-configs:/config
-  #  environment:
-  #    - PUBLIC_DIR=/usr/share/nginx/html
-  #    - LETS_ENCRYPT_DIR=/letsencrypt/
-  #  stdin_open: true
-  #  tty: true
-  #  networks:
-  #    - default
+  certbot:
+    build: ./certbot
+    volumes:
+      - letsencrypt:/letsencrypt
+      - certs:/etc/letsencrypt
+      - cmd:/cmd
+      - nginx-configs:/config
+    environment:
+      - PUBLIC_DIR=/usr/share/nginx/html
+      - LETS_ENCRYPT_DIR=/letsencrypt/
+    stdin_open: true
+    tty: true
+    networks:
+      - default
   nginx:
     build: ./nginx
     ports:
@@ -36,8 +36,8 @@ services:
       - LETS_ENCRYPT_DIR=/letsencrypt/
     networks:
       - default
-  test:
-    build: ./test
+  bash:
+    build: ./bash
     volumes:
       - letsencrypt:/letsencrypt
       - certs:/certs

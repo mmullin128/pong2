@@ -15,9 +15,9 @@ jobs:
         working-directory: ./ClientServer
         run: |
           sudo docker compose stop certbot || true
-          sudo docker compose rm certbot || true
+          sudo docker compose rm -f -s certbot || true
           sudo docker image rm clientserver-certbot || true
-          sudo docker compose build certbot
-          sudo docker compose run --rm -d certbot
+          sudo docker compose create certbot
+          sudo docker compose start certbot
 
         

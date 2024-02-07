@@ -2,8 +2,7 @@ name: Run Test
 on:
   push:
     branches:
-      - nginx-config
-      - test
+      - bash-config
 jobs:
   build:
     runs-on: [self-hosted, prod]
@@ -11,14 +10,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: test
+          ref: bash-config
       - name: Build
         working-directory: ./ClientServer
         run: |
-          sudo docker compose stop test || true
-          sudo docker compose rm -f -s test || true
-          sudo docker image rm clientserver-test || true
-          sudo docker compose create --build test
+          sudo docker compose stop bash || true
+          sudo docker compose rm -f -s bash || true
+          sudo docker image rm clientserver-bash || true
+          sudo docker compose create bash
           sudo docker image ls
           sudo docker ps -a
           
