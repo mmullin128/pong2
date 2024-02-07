@@ -18,6 +18,7 @@ jobs:
           sudo docker compose rm -f -s builder|| true
           sudo docker image rm clientserver-builder || true
           sudo docker compose create builder
+          sudo docker compose start builder
           sudo docker ps -a
           sudo docker image ls
         

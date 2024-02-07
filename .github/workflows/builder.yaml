@@ -4,16 +4,16 @@ on:
     branches:
       - builder
 jobs:
-  build:
+  run-builder:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: builder
-      - name: Build
+      - name: Run
         working-directory: ./ClientServer
         run: |
-          sudo docker compose run --rm -d builder
+          sudo docker compose restart builder
 
         
