@@ -14,10 +14,10 @@ jobs:
       - name: Build
         working-directory: ./ClientServer
         run: |
-          docker compose stop certbot || true
-          docker compose rm certbot || true
-          docker image rm clientserver-certbot || true
-          docker compose build certbot
-          docker compose run --rm -d certbot
+          sudo docker compose stop certbot || true
+          sudo docker compose rm certbot || true
+          sudo docker image rm clientserver-certbot || true
+          sudo docker compose build certbot
+          sudo docker compose run --rm -d certbot
 
         

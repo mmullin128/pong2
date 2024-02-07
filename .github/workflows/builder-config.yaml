@@ -14,6 +14,6 @@ jobs:
       - name: Build
         working-directory: ./ClientServer
         run: |
-          docker image rm clientserver-builder || true
-          docker compose build builder
+          sudo docker image rm clientserver-builder || true
+          sudo docker compose build builder
         

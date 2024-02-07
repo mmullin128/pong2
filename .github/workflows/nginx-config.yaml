@@ -14,10 +14,10 @@ jobs:
       - name: Build
         working-directory: ./ClientServer
         run: |
-          docker compose stop nginx || true
-          docker compose rm nginx || true
-          docker image rm clientserver-nginx || true
-          docker compose build nginx
-          docker compose run --rm -d nginx
+          sudo docker compose stop nginx || true
+          sudo docker compose rm nginx || true
+          sudo docker image rm clientserver-nginx || true
+          sudo docker compose build nginx
+          sudo docker compose run --rm -d nginx
 
         
