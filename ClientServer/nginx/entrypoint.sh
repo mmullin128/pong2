@@ -31,15 +31,15 @@ do
     if [ -e /cmd/exec.txt ]
     then
         CMD=$(< /cmd/exec.txt)
-        echo $CMD
         if [ "$CMD" == "$RELOAD" ]
         then
             nginx -s reload
             echo "" > /cmd/exec.txt
+            echo "Reloading NGINX Configuration"
         fi
         if [ "$CMD" == "$SLEEP" ]
         then
-            #sleep for 6 hours
+            echo "Going to sleep for 6 hours"
             sleep 21600 
         fi
     fi
