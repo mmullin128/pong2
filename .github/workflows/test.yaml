@@ -15,8 +15,11 @@ jobs:
       - name: Build
         working-directory: ./ClientServer
         run: |
+          sudo docker compose stop test || true
+          sudo docker compose rm -f -s test || true
           sudo docker image rm clientserver-test || true
-          sudo docker compose rm test || true
           sudo docker compose create --build test
+          sudo docker image ls
+          sudo docker ps -a
           
         
