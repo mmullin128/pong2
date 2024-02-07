@@ -20,6 +20,7 @@ jobs:
           sudo docker compose build nginx
           sudo docker compose run --rm -d nginx
           sudo docker volume ls
+          sudo docker ps -a
 
 
         
