@@ -1,11 +1,14 @@
-#! /usr/bin/bash
+#!/bin/bash
 
-#wait for server
-sleep 5
 
-#run certbot
-certbot certonly --non-interactive --webroot -w /letsencrypt -d paddleballonline.com --agree-tos --no-eff-email --email mattmullinc@gmail.com 
-
+if [ -e /etc/letsencrypt/live/paddleballonline.com/fullchain.pem ]
+then
+    echo "SSL Certificate already installed"
+else
+    echo "No SSL Certificate, Starting certbot"
+    #run certbot
+    certbot certonly --non-interactive --webroot -w /letsencrypt -d paddleballonline.com --agree-tos --no-eff-email --email mattmullinc@gmail.com 
+fi
 
 #edit the server configuration file
 echo "server {
@@ -27,7 +30,18 @@ echo "server {
 #reload configuration
 echo "reload" > cmd/exec.txt
 
-sleep 5
 
-echo "sleep" > cmd/exec.txt
+CMD="continue"
+CLOSE="close"
 
+cerbot renew --dry-run
+
+while [ "$CMD" != "$CLOSE" ];
+do
+    if [ -e /cmd/exec.txt ]
+    then
+        CMD=$(< /cmd/exec.txt)
+
+    fi
+    sleep 100
+done
