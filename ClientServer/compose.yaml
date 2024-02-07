@@ -30,6 +30,15 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
+  test:
+    build: ./test
+    volumes:
+      - letsencrypt:/letsencrypt
+      - certs:/certs
+      - cmd:/cmd
+      - public:/public
+      - nginx-configs:/nginx-configs
+    
 volumes:
   letsencrypt:
   certs:

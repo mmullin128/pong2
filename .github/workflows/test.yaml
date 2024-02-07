@@ -1,0 +1,20 @@
+name: Run Test
+on:
+  push:
+    branches:
+      - test
+jobs:
+  build:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: test
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          sudo docker image rm clientserver-test || true
+          sudo docker compose build test
+          
+        
