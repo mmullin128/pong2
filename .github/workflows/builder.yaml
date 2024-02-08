@@ -16,12 +16,12 @@ jobs:
         with:
           node-version: "18.x"
       - name: Build
-        working-directory: './ClientServer'
+        working-directory: './ClientServer/builder'
         run: |
           npm install --include=dev
           npm run build
       - name: Test
-        working-directory: './ClientServer'
+        working-directory: './ClientServer/builder'
         run: |
           npm run test
   run-builder:

@@ -18,7 +18,7 @@ async function createDom() {
     //const { window } = new JSDOM(html, { runScripts: "dangerously", resources: "usable", "url": "http://3.22.66.44/" });
     //const dom = await JSDOM.fromURL("http://3.22.66.44/", { runScripts: "dangerously", resources: "usable" } );
     
-    //must be ran from ClientServer directory
+    //must be ran from ClientServer/builder directory
     const dom = await JSDOM.fromFile('./public/index.html', options);
     return dom.window;
 }
