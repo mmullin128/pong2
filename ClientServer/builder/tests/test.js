@@ -44,5 +44,9 @@ const checkForApp = (window) => {return new Promise((resolve,reject) => {
     5000)
 })}
 
+function checkMainMenu(window) {
+    const mainMenu = window.document.getElementById("main-menu");
+    console.log(mainMenu.innerHTML);
+}
 
 runTests();
