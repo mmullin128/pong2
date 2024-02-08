@@ -16,8 +16,6 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
-    stdin_open: true
-    tty: true
     networks:
       - default
   nginx:
@@ -46,6 +44,8 @@ services:
       - nginx-configs:/nginx-configs
     networks:
       - default
+    stdin_open: true
+    tty: true
 volumes:
   letsencrypt:
   certs:
