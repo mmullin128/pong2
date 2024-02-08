@@ -4,7 +4,28 @@ on:
     branches:
       - builder
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@4
+        with:
+          ref: builder
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: Build
+        working-directory: './ClientServer'
+        run: |
+          npm install --include=dev
+          npm run build
+      - name: Test
+        working-directory: './ClientServer'
+        run: |
+          npm run test
   run-builder:
+    needs: ["test"]
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout

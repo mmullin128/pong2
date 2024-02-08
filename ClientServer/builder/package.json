@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js",
-    "start": "node ./dist/server/index.js"
+    "test": "node ./tests/test.js",
+    "build": "webpack --config ./webpack.config.js"
   },
   "keywords": [],
   "author": "",
