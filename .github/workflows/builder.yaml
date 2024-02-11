@@ -15,11 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-      - name: Build
+      - name: Install Dependencies
         working-directory: './ClientServer/builder'
         run: |
           npm install --include=dev
-          npm run build
       - name: Test
         working-directory: './ClientServer/builder'
         run: |

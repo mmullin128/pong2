@@ -1,0 +1,326 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`menu navigation 1`] = `
+<div
+  id="app"
+>
+  <div
+    className="menu rendered"
+    id="main"
+  >
+    <h1
+      id="main-menu-title"
+    >
+      PaddleBallOnline
+    </h1>
+    <button
+      className="menu-btn"
+      id="play-now-btn"
+      onClick={[Function]}
+    >
+      Play Now
+    </button>
+    <button
+      className="menu-btn"
+      id="private-game-btn"
+      onClick={[Function]}
+    >
+      Private Game
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="username"
+  >
+    <h1
+      id="username-menu-title"
+    >
+      Username
+    </h1>
+    <button
+      className="back-btn"
+      id="username-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="private-game"
+  >
+    <h1
+      id="private-game-menu-title"
+    >
+      Private Game
+    </h1>
+    <button
+      className="back-btn"
+      id="private-game-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+</div>
+`;
+
+exports[`menu navigation 2`] = `
+<div
+  id="app"
+>
+  <div
+    className="menu hidden"
+    id="main"
+  >
+    <h1
+      id="main-menu-title"
+    >
+      PaddleBallOnline
+    </h1>
+    <button
+      className="menu-btn"
+      id="play-now-btn"
+      onClick={[Function]}
+    >
+      Play Now
+    </button>
+    <button
+      className="menu-btn"
+      id="private-game-btn"
+      onClick={[Function]}
+    >
+      Private Game
+    </button>
+  </div>
+  <div
+    className="menu rendered"
+    id="username"
+  >
+    <h1
+      id="username-menu-title"
+    >
+      Username
+    </h1>
+    <button
+      className="back-btn"
+      id="username-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="private-game"
+  >
+    <h1
+      id="private-game-menu-title"
+    >
+      Private Game
+    </h1>
+    <button
+      className="back-btn"
+      id="private-game-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+</div>
+`;
+
+exports[`menu navigation 3`] = `
+<div
+  id="app"
+>
+  <div
+    className="menu rendered"
+    id="main"
+  >
+    <h1
+      id="main-menu-title"
+    >
+      PaddleBallOnline
+    </h1>
+    <button
+      className="menu-btn"
+      id="play-now-btn"
+      onClick={[Function]}
+    >
+      Play Now
+    </button>
+    <button
+      className="menu-btn"
+      id="private-game-btn"
+      onClick={[Function]}
+    >
+      Private Game
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="username"
+  >
+    <h1
+      id="username-menu-title"
+    >
+      Username
+    </h1>
+    <button
+      className="back-btn"
+      id="username-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="private-game"
+  >
+    <h1
+      id="private-game-menu-title"
+    >
+      Private Game
+    </h1>
+    <button
+      className="back-btn"
+      id="private-game-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+</div>
+`;
+
+exports[`menu navigation 4`] = `
+<div
+  id="app"
+>
+  <div
+    className="menu hidden"
+    id="main"
+  >
+    <h1
+      id="main-menu-title"
+    >
+      PaddleBallOnline
+    </h1>
+    <button
+      className="menu-btn"
+      id="play-now-btn"
+      onClick={[Function]}
+    >
+      Play Now
+    </button>
+    <button
+      className="menu-btn"
+      id="private-game-btn"
+      onClick={[Function]}
+    >
+      Private Game
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="username"
+  >
+    <h1
+      id="username-menu-title"
+    >
+      Username
+    </h1>
+    <button
+      className="back-btn"
+      id="username-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+  <div
+    className="menu rendered"
+    id="private-game"
+  >
+    <h1
+      id="private-game-menu-title"
+    >
+      Private Game
+    </h1>
+    <button
+      className="back-btn"
+      id="private-game-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+</div>
+`;
+
+exports[`menu navigation 5`] = `
+<div
+  id="app"
+>
+  <div
+    className="menu rendered"
+    id="main"
+  >
+    <h1
+      id="main-menu-title"
+    >
+      PaddleBallOnline
+    </h1>
+    <button
+      className="menu-btn"
+      id="play-now-btn"
+      onClick={[Function]}
+    >
+      Play Now
+    </button>
+    <button
+      className="menu-btn"
+      id="private-game-btn"
+      onClick={[Function]}
+    >
+      Private Game
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="username"
+  >
+    <h1
+      id="username-menu-title"
+    >
+      Username
+    </h1>
+    <button
+      className="back-btn"
+      id="username-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+  <div
+    className="menu hidden"
+    id="private-game"
+  >
+    <h1
+      id="private-game-menu-title"
+    >
+      Private Game
+    </h1>
+    <button
+      className="back-btn"
+      id="private-game-menu-back-btn"
+      onClick={[Function]}
+    >
+      back
+    </button>
+  </div>
+</div>
+`;

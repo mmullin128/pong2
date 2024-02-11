@@ -1,8 +1,13 @@
 import { useState } from 'react';
 
-export default function MenuButton({buttonText, renderPage, pageId}) { //button will pass the pageId to render into the renderPage function 
+export default function MenuButton({id, buttonText, goto, fns=[]}) {
 
     return (
-        <button className='menu-btn' onClick={() => renderPage(pageId)}>{buttonText}</button>
+        <button id={id} className='menu-btn' onClick={() => {
+            goto();
+            for (let fn of fns) {
+                fn();
+            }
+        }}>{buttonText}</button>
     );
 }

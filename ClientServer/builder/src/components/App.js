@@ -1,35 +1,35 @@
 import { useState } from 'react';
-import MainMenu from './MainMenu.js';
-import UsernameMenu from './UsernameMenu.js';
-import PrivateGameMenu from './PrivateGameMenu.js';
+import globals from './globals.js';
+import Menu from './Menu.js';
+import MenuButton from './MenuButton.js';
+import BackButton from './BackButton.js';
 export default function App() {
 
-    function renderPage(pageId) {
-        if (pageId == "back") {
-            //remove last item in page tree
-            setCurrentPage(pageTree[pageTree.length-2]);
-            setPageTree(pageTree.slice(0,pageTree.length-1));
-            return;
-        }
-        if (pageId == pageTree[pageTree.length-1]) return; 
-        setPageTree(newTree);
-        setCurrentPage(pageTree[pageTree.length-1]);
+    const goto = (menuId) => {
+        setCurrentMenu(menuId);
     }
 
-    const [pageTree, setPageTree] = useState(["main"]);
-    const [currentPage, setCurrentPage] = useState("main");
-    const pages = {
-        "main": <MainMenu renderPage={renderPage}/>,
-        "username": <UsernameMenu renderPage={renderPage}/>,
-        "private-game": <PrivateGameMenu renderPage={renderPage}/>
-    };
+    const [currentMenu, setCurrentMenu] = useState(globals.MENUS.MAIN);
 
     return (
         <div id="app">
-            {pageTree}
-            {pageTree.length}
-            {pageTree[pageTree.length-1]}
-            {pages[currentPage]}
+
+            <Menu id={globals.MENUS.MAIN} isRendered={(currentMenu == globals.MENUS.MAIN)} components={[
+                <h1 id='main-menu-title'>PaddleBallOnline</h1>,
+                <MenuButton id={"play-now-btn"} buttonText={"Play Now"} goto={() => goto(globals.MENUS.USERNAME)} />,
+                <MenuButton id={"private-game-btn"} buttonText={"Private Game"} goto={() => goto(globals.MENUS.PRIVATE_GAME)}/>
+            ]}/>
+
+            <Menu id={globals.MENUS.USERNAME} isRendered={(currentMenu == globals.MENUS.USERNAME)} components={[
+                <h1 id='username-menu-title'>Username</h1>,
+                <BackButton id={"username-menu-back-btn"} goto={() => goto(globals.MENUS.MAIN)}/>
+            ]}/>
+
+            <Menu id={globals.MENUS.PRIVATE_GAME} isRendered={(currentMenu == globals.MENUS.PRIVATE_GAME)} components={[
+                <h1 id='private-game-menu-title'>Private Game</h1>,
+                <BackButton id={"private-game-menu-back-btn"} goto={() => goto(globals.MENUS.MAIN)}/>
+            ]}/>
+
         </div>
     );
 }
