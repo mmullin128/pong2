@@ -17,28 +17,29 @@ test('menu navigation', () => {
 
     //goto username menu
     TestRenderer.act(() => {
-        testRenderer.root.find(testForId("play-now-btn")).props.goto();
+        //if this fails, be sure that the ui function is at 0 index of the onclick array
+        testRenderer.root.find(testForId("play-now-btn")).props.onClick[0]();
     })
     tree = testRenderer.toJSON();
     expect(tree).toMatchSnapshot();
 
     //back to main
     TestRenderer.act(() => {
-        testRenderer.root.find(testForId("username-menu-back-btn")).props.goto();
+        testRenderer.root.find(testForId("username-alert-back-btn")).props.onClick();
     })
     tree = testRenderer.toJSON();
     expect(tree).toMatchSnapshot();
     
     //goto private game menu
     TestRenderer.act(() => {
-        testRenderer.root.find(testForId("private-game-btn")).props.goto();
+        testRenderer.root.find(testForId("private-game-btn")).props.onClick[0]();
     })
     tree = testRenderer.toJSON();
     expect(tree).toMatchSnapshot();
 
     //back to main
     TestRenderer.act(() => {
-        testRenderer.root.find(testForId("private-game-menu-back-btn")).props.goto();
+        testRenderer.root.find(testForId("private-game-menu-back-btn")).props.onClick();
     })
     tree = testRenderer.toJSON();
     expect(tree).toMatchSnapshot();

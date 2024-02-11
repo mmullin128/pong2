@@ -1,9 +1,9 @@
 
 
-export default function Menu({ id, isRendered, components }) {
+export default function Alert({ id, isRendered, components }) {
     return (
         <div 
-            className={`menu ${ isRendered ? "rendered" : "hidden"}`} 
+            className={`alert ${ isRendered ? "rendered" : "hidden"}`} 
             id={id}
         >
             
