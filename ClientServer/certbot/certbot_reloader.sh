@@ -3,7 +3,7 @@
 
 CMD="continue"
 CLOSE="close"
-RELOAD="RELOAD"
+RELOAD="reload"
 GET_SSL="get-ssl"
 TEST_RENEW="test-renew"
 RENEW="renew"
