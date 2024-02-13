@@ -1,0 +1,29 @@
+
+name: Run Containers
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run containers:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: bash-config
+      - name: Build
+        working-directory: ./ClientServer
+        run: |
+          sudo docker compose restart bash
+          sudo docker compose restart nginx
+          sudo docker compose restart certbot
+
+          sudo docker compose stop builder || true
+          sudo docker compose rm -f -s builder|| true
+          sudo docker image rm clientserver-builder || true
+          sudo docker compose create --build builder
+          sudo docker compose start builder
+          
+          sudo docker ps -a
+          sudo docker image ls
