@@ -12,11 +12,12 @@ jobs:
         with:
           ref: front-end
       - name: Run Tests
-        working-directory: ./ClientServer
+        working-directory: ./ClientServer/builder
         run: |
           npm install --include=dev
           npm run test
   build-nginx:
+    needs: [test]
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
