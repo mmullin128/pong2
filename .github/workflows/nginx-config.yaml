@@ -5,7 +5,7 @@ on:
       - nginx-config
 jobs:
   build-nginx:
-    runs-on: [self-hosted, prod]
+    runs-on: [self-hosted, dev]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -14,8 +14,8 @@ jobs:
       - name: Build
         working-directory: ./ClientServer
         run: |
-          sudo docker compose down --remove-orphans
-          sudo docker compose up --build
+          sudo docker compose down --remove-orphans nginx
+          sudo docker compose up --build nginx
           sudo docker volume ls
           sudo docker ps -a
           sudo docker image ls

@@ -1,21 +1,24 @@
-
-name: Run Containers
+name: Deploy
 on:
   push:
     branches:
-      - config
+      - main
 jobs:
-  run-containers:
+  build-nginx:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: config
-      - name: Build
+          ref: main
+      - name: Compose
         working-directory: ./ClientServer
         run: |
-          echo $PWD
           sudo docker compose down --remove-orphans
+          sudo docker compose up -d --build
+          sudo docker volume ls
           sudo docker ps -a
-          sudo docker images ls
+          sudo docker image ls
+
+
+        

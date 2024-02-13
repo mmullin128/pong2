@@ -5,7 +5,7 @@ on:
       - bash-config
 jobs:
   build-bash:
-    runs-on: [self-hosted, prod]
+    runs-on: [self-hosted, dev]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

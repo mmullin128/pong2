@@ -25,7 +25,7 @@ jobs:
           npm run test
   create-builder:
     needs: ["test"]
-    runs-on: [self-hosted, prod]
+    runs-on: [self-hosted, dev]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
