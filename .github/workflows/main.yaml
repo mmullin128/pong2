@@ -3,7 +3,7 @@ name: Run Containers
 on:
   push:
     branches:
-      - main
+      - config
 jobs:
   run-containers:
     runs-on: [self-hosted, prod]
@@ -16,5 +16,7 @@ jobs:
         working-directory: ./ClientServer
         run: |
           echo $PWD
+          sudo docker compose down
+          sudo docker system prune
           sudo docker ps -a
           sudo docker image ls
