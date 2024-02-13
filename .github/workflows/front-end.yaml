@@ -1,0 +1,21 @@
+name: Rebuild Front End
+on:
+  push:
+    branches:
+      - front-end
+jobs:
+  build-nginx:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: front-end
+      - name: Compose
+        working-directory: ./ClientServer
+        run: |
+          sudo docker compose down --remove-orphans builder
+          sudo docker compose up -d --build builder
+          sudo docker volume ls
+          sudo docker ps -a
+          sudo docker image ls
