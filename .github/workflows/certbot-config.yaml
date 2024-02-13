@@ -18,6 +18,6 @@ jobs:
           sudo docker compose rm -f -s certbot || true
           sudo docker image rm clientserver-certbot || true
           sudo docker compose create certbot
-          sudo docker compose start certbot
+          sudo docker compose run certbot
 
         
