@@ -15,7 +15,8 @@ jobs:
         working-directory: ./ClientServer
         run: |
           sudo docker compose down --remove-orphans nginx
-          sudo docker compose up --build nginx
+          sudo docker compose up -d --build nginx
+          sudo docker compose up --build certbot
           sudo docker volume ls
           sudo docker ps -a
           sudo docker image ls
