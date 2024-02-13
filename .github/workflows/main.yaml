@@ -16,3 +16,6 @@ jobs:
         working-directory: ./ClientServer
         run: |
           echo $PWD
+          sudo docker compose down --remove-orphans
+          sudo docker ps -a
+          sudo docker images ls
