@@ -4,6 +4,19 @@ on:
     branches:
       - front-end
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: front-end
+      - name: Install Dependencies
+        run: |
+          npm ci
+      - name: Run Tests
+        run: |
+          npm run test
   build-nginx:
     runs-on: [self-hosted, prod]
     steps:
