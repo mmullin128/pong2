@@ -16,7 +16,3 @@ jobs:
         working-directory: ./ClientServer
         run: |
           echo $PWD
-          sudo docker compose down
-          sudo docker system prune
-          sudo docker ps -a
-          sudo docker image ls
