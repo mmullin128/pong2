@@ -17,7 +17,6 @@ jobs:
           npm install --include=dev
           npm run test
   build-nginx:
-    needs: [test]
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
