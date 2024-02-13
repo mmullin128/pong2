@@ -34,6 +34,12 @@ jobs:
       - name: Run
         working-directory: ./ClientServer
         run: |
-          sudo docker compose restart builder
+          sudo docker compose stop builder || true
+          sudo docker compose rm -f -s builder|| true
+          sudo docker image rm clientserver-builder || true
+          sudo docker compose create builder
+          sudo docker compose start builder
+          sudo docker ps -a
+          sudo docker image ls
 
         

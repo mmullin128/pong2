@@ -1,6 +1,16 @@
 #!/bin/bash
 
+
+
 #inital server configuration
+
+CLOSE="close"
+CONTINUE="continue"
+RELOAD="reload"
+SLEEP="sleep"
+GET_SSL="get-ssl"
+
+#initial config
 echo "server {
     listen 80;
     location / {
@@ -12,36 +22,19 @@ echo "server {
 }" > /etc/nginx/conf.d/default.conf
 
 #clear volume commands
+#rest Command
 echo "$CONTINUE" > /cmd/exec.txt
 
-CLOSE="close"
-CONTINUE="continue"
-RELOAD="reload"
-SLEEP="sleep"
 
+#start nginx_reloader in background
+./nginx_reloader.sh &
 
-CMD=$CONTINUE
-
-
+#start nginx 
 nginx
 
+#start certbot command
+echo "$GET_SSL" > /cmd/exec.txt
 
-while [ "$CMD" != "$CLOSE" ];
-do
-    if [ -e /cmd/exec.txt ]
-    then
-        CMD=$(< /cmd/exec.txt)
-        if [ "$CMD" == "$RELOAD" ]
-        then
-            nginx -s reload
-            echo "" > /cmd/exec.txt
-            echo "Reloading NGINX Configuration"
-        fi
-        if [ "$CMD" == "$SLEEP" ]
-        then
-            echo "Going to sleep for 6 hours"
-            sleep 21600 
-        fi
-    fi
-    sleep 3
-done
+
+#run bash terminal
+bash

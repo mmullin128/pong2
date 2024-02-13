@@ -1,24 +1,44 @@
-name: Build Builder
+name: Create Builder
 on:
   push:
     branches:
       - builder-config
 jobs:
-  build-builder:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: builder-config
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: Install Dependencies
+        working-directory: './ClientServer/builder'
+        run: |
+          npm install --include=dev
+      - name: Test
+        working-directory: './ClientServer/builder'
+        run: |
+          npm run test
+  create-builder:
+    needs: ["test"]
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: builder-config
-      - name: Build
+      - name: Create
         working-directory: ./ClientServer
         run: |
           sudo docker compose stop builder || true
           sudo docker compose rm -f -s builder|| true
           sudo docker image rm clientserver-builder || true
           sudo docker compose create builder
-          sudo docker compose start builder
           sudo docker ps -a
           sudo docker image ls
+
         

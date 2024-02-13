@@ -6,6 +6,9 @@ services:
       - ./builder/src:/src
     networks:
       - default
+    
+    stdin_open: true
+    tty: true
   certbot:
     build: ./certbot
     volumes:
@@ -18,6 +21,8 @@ services:
       - LETS_ENCRYPT_DIR=/letsencrypt/
     networks:
       - default
+    stdin_open: true
+    tty: true
   nginx:
     build: ./nginx
     ports:
@@ -34,6 +39,9 @@ services:
       - LETS_ENCRYPT_DIR=/letsencrypt/
     networks:
       - default
+  
+    stdin_open: true
+    tty: true
   bash:
     build: ./bash
     volumes:
