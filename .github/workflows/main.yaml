@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  run containers:
+  run-containers:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
