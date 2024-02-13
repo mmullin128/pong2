@@ -38,7 +38,7 @@ do
             echo "$RELOAD" > cmd/exec.txt
         elif [ "$CMD" == "$TEST_RENEW" ]
         then
-            cerbot renew --dry-run
+            certbot renew --dry-run
             echo "$CONTINUE" > cmd/exec.txt
         fi
     fi
