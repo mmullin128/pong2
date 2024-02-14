@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo docker compose down --remove-orphans builder
           sudo docker compose up --build builder
-          sudo docker system prune
+          sudo docker system prune -a -f
           sudo docker volume ls
           sudo docker ps -a
           sudo docker image ls
