@@ -5,6 +5,7 @@ ARG PORT=8080
 COPY package.json .
 COPY package-lock.json .
 COPY webpack.config.js .
+COPY src src
 
 RUN npm ci
 

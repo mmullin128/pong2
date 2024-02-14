@@ -3,7 +3,6 @@ services:
     build: ./builder
     volumes:
       - public:/public
-      - ./builder/src:/src
     networks:
       - default
     
