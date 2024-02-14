@@ -5,7 +5,7 @@ exports[`menu navigation 1`] = `
   id="app"
 >
   <h1>
-    Poop
+    Poop and pee
   </h1>
   <div
     className="menu rendered"
@@ -393,7 +393,7 @@ exports[`menu navigation 2`] = `
   id="app"
 >
   <h1>
-    Poop
+    Poop and pee
   </h1>
   <div
     className="menu rendered"
@@ -781,7 +781,7 @@ exports[`menu navigation 3`] = `
   id="app"
 >
   <h1>
-    Poop
+    Poop and pee
   </h1>
   <div
     className="menu rendered"
@@ -1169,7 +1169,7 @@ exports[`menu navigation 4`] = `
   id="app"
 >
   <h1>
-    Poop
+    Poop and pee
   </h1>
   <div
     className="menu hidden"
@@ -1557,7 +1557,7 @@ exports[`menu navigation 5`] = `
   id="app"
 >
   <h1>
-    Poop
+    Poop and pee
   </h1>
   <div
     className="menu rendered"
