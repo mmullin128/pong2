@@ -34,8 +34,8 @@ export default function App() {
             ]}/>
 
             <Menu id={globals.MENUS.CREATE_GAME_MENU} isRendered={(currentMenu == globals.MENUS.CREATE_GAME_MENU)} components={[
-                <BackButton id={"create-game-menu-back-btn"} onClick={() => gotoMenu(globals.MENUS.PRIVATE_GAME)} />,
                 <h2>Choose Game Options</h2>,
+                <BackButton id={"create-game-menu-back-btn"} onClick={() => gotoMenu(globals.MENUS.PRIVATE_GAME)} />,
                 <InputTable 
                     id={"create-game-input-table"}
                     data = {[
