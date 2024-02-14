@@ -20,7 +20,7 @@ export default function App() {
 
     return (
         <div id="app">
-            <h1>Poop</h1>
+            <h1>Poop and pee</h1>
             <Menu id={globals.MENUS.MAIN} isRendered={(currentMenu == globals.MENUS.MAIN)} components={[
                 <h1 id='main-menu-title'>PaddleBallOnline</h1>,
                 <MenuButton id={"play-now-btn"} buttonText={"Play Now"} onClick={[() => gotoAlert(globals.ALERTS.USERNAME_ALERT)]} />,
