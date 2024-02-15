@@ -1,5 +1,5 @@
-import { mongoClient, connect, disconnect } from "../../src/db/API/mongoClient.js"
-import PlayerInterface from "../../src/db/Interfaces/PlayerInterface.js";
+const { mongoClient, connect, disconnect } = require("../../src/db/API/mongoClient.js");
+const PlayerInterface = require("../../src/db/Interfaces/PlayerInterface.js");
 
 const dbClient = mongoClient(process.env.DB_URI);
 
