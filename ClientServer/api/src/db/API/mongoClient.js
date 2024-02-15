@@ -21,4 +21,4 @@ const disconnect = (mongoClient) => new Promise((resolve,reject) => {
     });
 });
 
-module.exports = { mongoClient, connect, disconnect }
+module.exports = { mongoClient : mongoClient, connect : connect, disconnect : disconnect }
