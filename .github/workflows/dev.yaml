@@ -16,7 +16,7 @@ jobs:
         run: |
           npm install --include=dev
           npm run test
-compose-dev:
+  compose-dev:
     runs-on: [self-hosted, dev]
     steps:
       - name: Checkout
