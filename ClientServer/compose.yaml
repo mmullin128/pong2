@@ -4,8 +4,8 @@ services:
     volumes:
       - public:/public
     environment:
-      - PUBLIC_IP=/run/secrets/public_ip
-      - PUBLIC_DOMAIN=/run/secrets/public_domain
+      - PUBLIC_IP_FILE=/run/secrets/public_ip
+      - PUBLIC_DOMAIN_FILE=/run/secrets/public_domain
     networks:
       - default
     secrets:
@@ -23,8 +23,8 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
-      - PUBLIC_IP=/run/secrets/public_ip
-      - PUBLIC_DOMAIN=/run/secrets/public_domain
+      - PUBLIC_IP_FILE=/run/secrets/public_ip
+      - PUBLIC_DOMAIN_FILE=/run/secrets/public_domain
     networks:
       - default
     secrets:
@@ -46,8 +46,8 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
-      - PUBLIC_IP=/run/secrets/public_ip
-      - PUBLIC_DOMAIN=/run/secrets/public_domain
+      - PUBLIC_IP_FILE=/run/secrets/public_ip
+      - PUBLIC_DOMAIN_FILE=/run/secrets/public_domain
     networks:
       - default
     secrets:

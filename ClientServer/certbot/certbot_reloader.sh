@@ -8,6 +8,9 @@ GET_SSL="get-ssl"
 TEST_RENEW="test-renew"
 RENEW="renew"
 
+PUBLIC_DOMAIN=$(< $PUBLIC_DOMAIN_FILE)
+PUBLIC_IP=$(< $PUBLIC_IP_FILE)
+
 
 while [ "$CMD" != "$CLOSE" ];
 do
