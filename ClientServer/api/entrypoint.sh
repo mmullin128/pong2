@@ -1,5 +1,5 @@
 #!/bin/bash
-
+NODE_ENV="UNDEFINED"
 if [ "$NODE_ENV" == "TEST" ]
 then
     npm install --save-dev
