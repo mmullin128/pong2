@@ -1,5 +1,6 @@
-FROM node:18-alpine
+FROM alpine:latest
 
+RUN apk add nodejs npm
 
 COPY package.json .
 COPY package-lock.json .
@@ -15,4 +16,4 @@ RUN npm ci
 COPY ./entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT [ "/bin/bash -c ./entrypoint.sh" ]
+ENTRYPOINT [ "./entrypoint.sh" ]
