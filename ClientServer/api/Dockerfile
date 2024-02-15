@@ -1,8 +1,6 @@
-FROM ubuntu:latest
+FROM alpine:latest
 
-RUN apt-get update -y
-RUN curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash - &&\
-sudo apt-get install -y nodejs
+RUN apk add nodejs npm
 
 COPY package.json .
 COPY package-lock.json .
