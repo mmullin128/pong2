@@ -24,6 +24,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: front-end
+      - name: Configure Secrets
+        working-directory: ./ClientServer
+        env:
+          PUBLIC_IP: ${{ secrets.PUBLIC_IP }}
+          PUBLIC_DOMAIN: ${{ secrets.PUBLIC_DOMAIN }}
+        run: |
+          echo "$PUBLIC_IP" > ./public_ip.txt
+          echo "$PUBLIC_DOMAIN" > ./public_domain.txt
       - name: Compose
         working-directory: ./ClientServer
         run: |

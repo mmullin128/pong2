@@ -3,9 +3,14 @@ services:
     build: ./builder
     volumes:
       - public:/public
+    environment:
+      - PUBLIC_IP=/run/secrets/public_ip
+      - PUBLIC_DOMAIN=/run/secrets/public_domain
     networks:
       - default
-    
+    secrets:
+      - public_ip
+      - public_domain
     stdin_open: true
     tty: true
   certbot:
@@ -18,8 +23,13 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
+      - PUBLIC_IP=/run/secrets/public_ip
+      - PUBLIC_DOMAIN=/run/secrets/public_domain
     networks:
       - default
+    secrets:
+      - public_ip
+      - public_domain
     stdin_open: true
     tty: true
   nginx:
@@ -36,9 +46,13 @@ services:
     environment:
       - PUBLIC_DIR=/usr/share/nginx/html
       - LETS_ENCRYPT_DIR=/letsencrypt/
+      - PUBLIC_IP=/run/secrets/public_ip
+      - PUBLIC_DOMAIN=/run/secrets/public_domain
     networks:
       - default
-  
+    secrets:
+      - public_ip
+      - public_domain
     stdin_open: true
     tty: true
   bash:
@@ -61,3 +75,8 @@ volumes:
   nginx-configs:
 networks:
   default:
+secrets:
+  public_ip: 
+    file: ./public_ip.txt
+  public_domain: 
+    file: ./public_domain.txt
