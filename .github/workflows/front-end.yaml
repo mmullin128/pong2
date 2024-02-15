@@ -17,6 +17,7 @@ jobs:
           npm install --include=dev
           npm run test
   build-and-run-builder:
+    needs: [test]
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
