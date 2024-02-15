@@ -1,6 +1,4 @@
-FROM alpine:latest
-
-RUN apk add nodejs npm
+FROM node:18-alpine
 
 RUN apk add --no-cache --upgrade bash
 
