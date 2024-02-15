@@ -5,7 +5,7 @@ if [ "$NODE_ENV" == "TEST" ]
 then
     echo "Running Tests"
     npm install --save-dev
-    npm run test "DB_URI=$DB_URI"
+    "DB_URI=$DB_URI" npm run test 
 elif [ "$NODE_ENV" == "PROD" ]
 then
     echo "Starting Server"
