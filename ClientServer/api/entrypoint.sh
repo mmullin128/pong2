@@ -6,7 +6,7 @@ if [ "$NODE_ENV" == "TEST" ]
 then
     echo "Running Tests"
     npm install --save-dev
-    jest
+    node jest
 elif [ "$NODE_ENV" == "PROD" ]
 then
     echo "Starting Server"
