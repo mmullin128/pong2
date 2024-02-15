@@ -17,4 +17,4 @@ RUN chmod +x ./entrypoint.sh
 
 RUN npm ci
 
-CMD [ "/bin/bash", "-c", "entrypoint.sh" ]
+ENTRYPOINT [ "/bin/bash", "-c", "entrypoint.sh" ]
