@@ -18,7 +18,7 @@ do
         if [ "$CMD" == "$GET_SSL" ]
         then
             echo "Starting Certbot"
-            echo "Public Domain": $PUBLIC_DOMAIN
+            echo "Public Domain: $PUBLIC_DOMAIN"
             certbot certonly --non-interactive --webroot -w /letsencrypt -d $PUBLIC_DOMAIN --agree-tos --no-eff-email --email mattmullinc@gmail.com 
             #edit the server configuration file
             echo "server {
