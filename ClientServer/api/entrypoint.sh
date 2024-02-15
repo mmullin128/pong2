@@ -1,12 +1,14 @@
 #!/bin/bash
-NODE_ENV="UNDEFINED"
+NODE_ENV=$(< $NODE_ENV_FILE)
 if [ "$NODE_ENV" == "TEST" ]
 then
+    echo "Running Tests"
     npm install --save-dev
     npm run test
 elif [ "$NODE_ENV" == "PROD" ]
 then
+    echo "Starting Server"
     npm run start
 else
-    echo "Error: Invalid NODE_ENV: $NODE_ENV"
+    echo "Invalid NODE_ENV: $NODE_ENV"
 fi
