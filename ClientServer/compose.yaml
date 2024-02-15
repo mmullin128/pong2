@@ -1,4 +1,14 @@
 services:
+  api:
+    build: ./api
+    environment:
+      - DB_URI_FILE=/run/secrets/db_uri
+      - NODE_ENV_FILE=/run/secrets/api_node_env
+    networks:
+      - default
+    secrets:
+      - db_uri
+      - api_node_env
   builder:
     build: ./builder
     volumes:
@@ -80,3 +90,7 @@ secrets:
     file: ./public_ip.txt
   public_domain: 
     file: ./public_domain.txt
+  db_uri:
+    file: ./db_uri.txt
+  api_node_env:
+    file: ./api_node_env.txt

@@ -1,0 +1,30 @@
+name: Test Api
+on:
+  push:
+    branches:
+      - api
+jobs:
+  run-api-test:
+    runs-on: [self-hosted, dev]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: api
+      - name: Configure Secrets
+        working-directory: ./ClientServer
+        env:
+          DB_URI: ${{ secrets.MONGO_DB_URI }}
+          NODE_ENV: "TEST"
+        run: |
+          echo "$DB_URI" > ./db_uri.txt
+          echo "$NODE_ENV" > ./api_node_env.txt
+      - name: Compose
+        working-directory: ./ClientServer
+        run: |
+          sudo docker compose down --remove-orphans api
+          sudo docker compose up --build api 
+          sudo docker system prune -a -f
+          sudo docker volume ls
+          sudo docker ps -a
+          sudo docker image ls
