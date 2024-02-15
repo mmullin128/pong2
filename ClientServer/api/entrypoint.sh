@@ -8,6 +8,5 @@ elif [ "$NODE_ENV" == "PROD" ]
 then
     npm run start
 else
-then
     echo "Error: Invalid NODE_ENV: $NODE_ENV"
 fi
