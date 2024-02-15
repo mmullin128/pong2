@@ -1,7 +1,7 @@
 #!/bin/bash
 NODE_ENV=$(< $NODE_ENV_FILE)
 DB_URI=$(< $DB_URI_FILE)
-export DB_URI=$DB_URI
+export DB_URI="$DB_URI"
 
 printenv
 
