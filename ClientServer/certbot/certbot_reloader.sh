@@ -18,19 +18,19 @@ do
         if [ "$CMD" == "$GET_SSL" ]
         then
             echo "Starting Certbot"
-            certbot certonly --non-interactive --webroot -w /letsencrypt -d paddleballonline.com --agree-tos --no-eff-email --email mattmullinc@gmail.com 
+            certbot certonly --non-interactive --webroot -w /letsencrypt -d $PUBLIC_DOMAIN --agree-tos --no-eff-email --email mattmullinc@gmail.com 
             #edit the server configuration file
             echo "server {
                 listen 443 ssl default_server;
                 listen [::]:443 ssl default_server;
-                server_name paddleballonline.com;
-                ssl_certificate /etc/letsencrypt/live/paddleballonline.com/fullchain.pem;
-                ssl_certificate_key /etc/letsencrypt/live/paddleballonline.com/privkey.pem;
+                server_name $PUBLIC_DOMAIN;
+                ssl_certificate /etc/letsencrypt/live/$PUBLIC_DOMAIN/fullchain.pem;
+                ssl_certificate_key /etc/letsencrypt/live/$PUBLIC_DOMAIN/privkey.pem;
                 
                 location / {
                     root $PUBLIC_DIR;
                 }
-                
+
                 location /.well-known/acme-challenge/ {
                     root $LETS_ENCRYPT_DIR;
                 }
