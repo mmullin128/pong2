@@ -1,6 +1,6 @@
-import Interface from "./Interface.js";
+const Interface = require("./Interface.js");
 
-export default class PlayerInterface extends Interface {
+module.exports = class PlayerInterface extends Interface {
     
     static DB_NAME = "PONG1";
 

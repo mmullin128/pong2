@@ -1,11 +1,11 @@
-import { MongoClient } from 'mongodb';
-import path from 'path';
+const { MongoClient } = require('mongodb');
+const path = require('path');
 
-export function mongoClient(DB_URI) {
+function mongoClient(DB_URI) {
     return new MongoClient(DB_URI);
 }
 
-export const connect = (mongoClient) => new Promise((resolve,reject) => {
+const connect = (mongoClient) => new Promise((resolve,reject) => {
     mongoClient.connect()
     .catch((err) => reject(err))
     .then(() => {
@@ -13,10 +13,12 @@ export const connect = (mongoClient) => new Promise((resolve,reject) => {
     });
 });
 
-export const disconnect = (mongoClient) => new Promise((resolve,reject) => {
+const disconnect = (mongoClient) => new Promise((resolve,reject) => {
     mongoClient.close()
     .catch((err) => reject(err))
     .then(() => {
         resolve("disconnected")
     });
 });
+
+module.exports = { mongoClient, connect, disconnect }

@@ -1,5 +1,5 @@
 
-export default class Interface {
+class Interface {
 
     constructor(mongoClient,dbName,collections,baseInstance) {
         //create stateful access to the mongoClient
@@ -50,3 +50,4 @@ export default class Interface {
         return true;
     }
 }
+module.exports = Interface;
