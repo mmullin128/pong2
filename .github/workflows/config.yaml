@@ -1,16 +1,24 @@
-name: Deploy
+name: Configure Server
 on:
   push:
     branches:
       - config
 jobs:
-  build-nginx:
+  build:
     runs-on: [self-hosted, prod]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: config
+      - name: Configure Secrets
+        working-directory: ./ClientServer
+        env:
+          PUBLIC_IP: ${{ secrets.PUBLIC_IP }}
+          PUBLIC_DOMAIN: ${{ secrets.PUBLIC_DOMAIN }}
+        run: |
+          echo "$PUBLIC_IP" > ./public_ip.txt
+          echo "$PUBLIC_DOMAIN" > ./public_domain.txt
       - name: Compose
         working-directory: ./ClientServer
         run: |
