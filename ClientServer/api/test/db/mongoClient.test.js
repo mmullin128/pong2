@@ -3,8 +3,8 @@ const { mongoClient, connect, disconnect } = require("../../src/db/API/mongoClie
 
 test("mongo client connect, disconnect", async () => {
     const dbClient = mongoClient(process.env.DB_URI);
-    const startStatus = await connect(mongoClient);
+    const startStatus = await connect(dbClient);
     expect(startStatus).toBe("connected");
-    const stopStatus = await disconnect(mongoClient);
+    const stopStatus = await disconnect(dbClient);
     expect(stopStatus).toBe("disconnected");
 })
