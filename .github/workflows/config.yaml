@@ -2,7 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - config
 jobs:
   build-nginx:
     runs-on: [self-hosted, prod]
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: config
       - name: Compose
         working-directory: ./ClientServer
         run: |

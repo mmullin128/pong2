@@ -27,9 +27,9 @@ jobs:
         working-directory: ./ClientServer
         run: |
           sudo docker compose down --remove-orphans
-          sudo docker compose up --build builder
-          sudo docker compose up --build nginx
-          sudo docker compose up --build bash
+          sudo docker compose up -d --build builder
+          sudo docker compose up -d --build nginx
+          sudo docker compose up -d --build bash
           sudo docker system prune -a -f
           sudo docker volume ls
           sudo docker ps -a
