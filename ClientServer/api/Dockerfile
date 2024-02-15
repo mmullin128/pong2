@@ -2,6 +2,8 @@ FROM alpine:latest
 
 RUN apk add nodejs npm
 
+RUN apk add --no-cache --upgrade bash
+
 COPY package.json .
 COPY package-lock.json .
 
@@ -17,4 +19,4 @@ RUN chmod +x ./entrypoint.sh
 
 RUN npm ci
 
-ENTRYPOINT [ "/bin/bash", "-c", "entrypoint.sh" ]
+ENTRYPOINT [ "entrypoint.sh" ]
