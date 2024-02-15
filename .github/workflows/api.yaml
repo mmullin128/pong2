@@ -22,7 +22,6 @@ jobs:
       - name: Compose
         working-directory: ./ClientServer
         run: |
-          sudo docker compose down --remove-orphans api
           sudo docker compose up --build api 
           sudo docker system prune -a -f
           sudo docker volume ls
