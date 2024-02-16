@@ -50,17 +50,24 @@ module.exports = class PlayerInterface extends Interface {
                 "playerData" : data
             }
         }
-        await this.update(collectionName, id, updateDoc);
+        return await this.update(collectionName, id, updateDoc);
     }
-    async updateGameStatus(collectionName, id, role, status, gameURL) {
+    async updateName(collectionName, id, name) {
         const updateDoc = {
             $set : {
-                "role" : role,
-                "status" : status,
-                "gameURL" : gameURL
+                "name" : name
             }
         }
-        await this.update(collectionName, id, updateDoc);
+        return await this.update(collectionName, id, updateDoc);
+    }
+    async updateGameStatus(collectionName, id, status, gameId) {
+        const updateDoc = {
+            $set : {
+                "status" : status,
+                "gameId" : gameId
+            }
+        }
+        return await this.update(collectionName, id, updateDoc);
     }
 
 }
