@@ -2,6 +2,9 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 
 function mongoClient(DB_URI) {
+    if (DB_URI.split(':')[0] != "mongodb+srv") {
+        throw new Error(`INVALID DB_URI ${DB_URI}`);
+    }
     return new MongoClient(DB_URI);
 }
 

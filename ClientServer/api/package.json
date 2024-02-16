@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./test/db/windows.test.js",
     "start": "node ./src/server/index.js"
   },
   "keywords": [],
