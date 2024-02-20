@@ -15,7 +15,7 @@ describe("Database: Player Interface", () => {
         testGame["players"] = [];
         const insertStatus = await gameInterface.insert(testGame.collection,testGame.id,testGame);
         expect(insertStatus).toBe(true);
-        gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
+        await gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
         const doc = await gameInterface.get(testGame.collection, testGame.id);
         testGame["players"] = [
             {
