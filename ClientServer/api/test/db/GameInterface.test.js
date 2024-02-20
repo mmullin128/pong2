@@ -13,20 +13,24 @@ describe("Database: Game Interface", () => {
         let testPlayer = PlayerInterface.testPlayer;
         testGame["id"] = "test3";
         testGame["players"] = [];
-        await gameInterface.delete(testGame.collection, testGame.id);
-        const insertStatus = await gameInterface.insert(testGame.collection,testGame.id,testGame);
-        expect(insertStatus).toBe(true);
-        await gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
-        const doc = await gameInterface.get(testGame.collection, testGame.id);
-        testGame["players"] = [
-            {
-                "collection" : testPlayer.collection,
-                "id" : testPlayer.id,
-                "team" : testGame["teams"][0]
-            }
-        ];
-        expect(doc).toEqual(testGame);
-        await gameInterface.delete(testGame.collection,testGame.id);
-        await disconnect(dbClient);
+        try {
+            await gameInterface.delete(testGame.collection, testGame.id);
+            const insertStatus = await gameInterface.insert(testGame.collection,testGame.id,testGame);
+            expect(insertStatus).toBe(true);
+            await gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
+            const doc = await gameInterface.get(testGame.collection, testGame.id);
+            testGame["players"] = [
+                {
+                    "collection" : testPlayer.collection,
+                    "id" : testPlayer.id,
+                    "team" : testGame["teams"][0]
+                }
+            ];
+            expect(doc).toEqual(testGame);
+        } finally {
+            await gameInterface.delete(testGame.collection,testGame.id);
+            await disconnect(dbClient);
+        }
+        
     })
 })
