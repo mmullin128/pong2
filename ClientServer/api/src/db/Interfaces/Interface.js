@@ -63,7 +63,6 @@ class Interface {
         const playerDoc = await this.get(collectionName, id);
         if (!playerDoc) throw new Error(`Nonexistent Player ID: ${id}`);
         //set data
-        await collection.updateOne()
         await collection.updateOne(
             { "id" : id },
             updateDoc,
