@@ -33,7 +33,8 @@ module.exports = class GameInterface extends Interface {
             { "collection": "player-test-1", "id" : "testId", "team" : "team1" }
         ],
         teams: [
-            "team1"
+            "team1",
+            "team2"
         ],
         gameSettings: {
             "player-size" : "5",
