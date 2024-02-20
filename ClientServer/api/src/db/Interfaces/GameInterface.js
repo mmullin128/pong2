@@ -80,13 +80,15 @@ module.exports = class GameInterface extends Interface {
         if (! await this.checkPlayer(collectionName, id, playerId)) throw new Error(`No such player in game: gameId = ${id} , playerId = ${playerId}`);
         const updateDoc = {
             $set : {
-                "players.$[i].team" : team
+                "players.$[element].team" : team
             }
         }
         const options = {
             arrayFilters : [
                 {
-                    "i.id" : playerId
+                    "element" : {
+                        "id" : playerId
+                    }
                 }
             ]
         }
