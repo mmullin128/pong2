@@ -27,13 +27,12 @@ module.exports = class PlayerInterface extends Interface {
         id : "1234",
         name : "player1",
         collection: "player-test-1",
-        role : "test",
         status : "idle",
-        gameURL : "none",
+        time: Date.now(),
         playerData: {
-            "length" : 5,
-            "speed" : 5,
-            "turn-speed" : 5,
+            "length" : "5",
+            "speed" : "5",
+            "turn-speed" : "5",
             "color-1" : [ 1, 0, 0],
             "color-2" : [0, 0, 1],
             "abilities" : [
@@ -60,11 +59,11 @@ module.exports = class PlayerInterface extends Interface {
         }
         return await this.update(collectionName, id, updateDoc);
     }
-    async updateGameStatus(collectionName, id, status, gameId) {
+    async updateStatus(collectionName, id, status, time) {
         const updateDoc = {
             $set : {
                 "status" : status,
-                "gameId" : gameId
+                "time" : time
             }
         }
         return await this.update(collectionName, id, updateDoc);

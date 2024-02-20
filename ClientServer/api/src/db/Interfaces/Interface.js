@@ -40,6 +40,7 @@ class Interface {
         return doc;
     }
     getWait(collectionName, id, intervalms=50, timeOutms=5000) {
+        //will wait <timeOutMs> milliseconds for data to be populated
         let doc;
         return new Promise((resolve,reject) => {
             const checkInterval = setInterval( async () => {
@@ -52,11 +53,11 @@ class Interface {
             }, intervalms)
             const timeOut = setTimeout(() => {
                 clearInterval(checkInterval);
-                resolve(`No such doc with id: ${id}`);
+                reject(`No such doc with id: ${id}`);
             }, timeOutms)
         })
     }
-    async update(collectionName, id, updateDoc) {
+    async update(collectionName, id, updateDoc, options={}) {
         const collection = this.getCollection(collectionName);
         //if no player, throw error
         const playerDoc = await this.get(collectionName, id);
@@ -64,7 +65,8 @@ class Interface {
         //set data
         await collection.updateOne(
             { "id" : id },
-            updateDoc
+            updateDoc,
+            options
         )
         return true;
     }
