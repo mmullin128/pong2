@@ -84,9 +84,11 @@ module.exports = class GameInterface extends Interface {
             }
         }
         const options = {
-            arrayFilters : {
-                "i.id" : playerId
-            }
+            arrayFilters : [
+                {
+                    "i.id" : playerId
+                }
+            ]
         }
         return await this.update(collectionName, id, updateDoc, options);
     }
