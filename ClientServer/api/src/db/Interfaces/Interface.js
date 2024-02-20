@@ -39,8 +39,8 @@ class Interface {
         const doc = await collection.findOne({ "id": id }, { "_id": 0 });
         return doc;
     }
-    getWait(collectionName, id, intervalms=50, timeOutms=5000) {
-        //will wait <timeOutMs> milliseconds for data to be populated
+    getWait(collectionName, id, intervalms=50, timeOutms=2000) {
+        //will wait timeOutMs milliseconds for data to be populated
         let doc;
         return new Promise((resolve,reject) => {
             const checkInterval = setInterval( async () => {
