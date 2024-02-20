@@ -17,7 +17,8 @@ describe("Database: Game Interface", () => {
             await gameInterface.delete(testGame.collection, testGame.id);
             const insertStatus = await gameInterface.insert(testGame.collection,testGame.id,testGame);
             expect(insertStatus).toBe(true);
-            await gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
+            const addPlayerStatus = await gameInterface.addPlayer(testGame.collection, testGame.id, testPlayer.collection, testPlayer.id, testGame["teams"][0])
+            expect(addPlayerStatus).toBe(true);
             const doc = await gameInterface.get(testGame.collection, testGame.id);
             testGame["players"] = [
                 {

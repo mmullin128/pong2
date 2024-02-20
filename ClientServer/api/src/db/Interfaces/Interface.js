@@ -53,7 +53,7 @@ class Interface {
             }, intervalms)
             const timeOut = setTimeout(() => {
                 clearInterval(checkInterval);
-                reject(`No such doc with id: ${id}`);
+                reject(new Error(`No such Document: ID = ${id}`));
             }, timeOutms)
         })
     }
