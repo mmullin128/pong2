@@ -54,12 +54,17 @@ module.exports = class GameInterface extends Interface {
     constructor(mongoClient) {
         super(mongoClient,GameInterface.DB_NAME, GameInterface.COLLECTIONS, GameInterface.testGame);
     }
-    async addPlayer(collectionName, id, playerCollection, playerId, team) {
-        const doc = await this.getWait(collectionName,id,50,2000);
+    async checkPlayer(collectionName, id, playerId) {
+        //returns true if player already in game
+        const doc = await this.getWait(collectionName,id);
         if (!doc) throw new Error(`No such Game: collectionName: ${collectionName}, id: ${id}`);
         for (let player of doc.players) {
-            if (player.id == playerId) throw new Error(`Player already in game: ID = ${playerId}`);
+            if (player.id == playerId) return true;
         }
+        return false;
+    }
+    async addPlayer(collectionName, id, playerCollection, playerId, team) {
+        if (this.checkPlayer(collectionName, id, playerId)) throw new Error(`Player already in game: ID = ${playerId}`);
         const updateDoc = {
             $push : {
                 "players" : {
@@ -69,8 +74,20 @@ module.exports = class GameInterface extends Interface {
                 }
             }
         }
-        
         return await this.update(collectionName, id, updateDoc);
     }
-
+    async changeTeam(collectionName, id, playerId, team) {
+        if (!this.checkPlayer(collectionName, id, playerId)) throw new Error(`No such player in game: gameId = ${id} , playerId = ${playerId}`);
+        const updateDoc = {
+            $set : {
+                "players.$[i].team" : team
+            }
+        }
+        const options = {
+            arrayFilters : {
+                "i.id" : playerId
+            }
+        }
+        return await this.update(collectionName, id, updateDoc, options);
+    }
 }
