@@ -25,7 +25,7 @@ class Interface {
     async insert(collectionName, id, instance) {
         const collection = this.getCollection(collectionName);
         const playerDoc = await collection.findOne({ id: id }, { projection: { _id: 0 }});
-        if (playerDoc) throw new Error(`Player already exists. ID: ${id}`);
+        if (playerDoc) throw new Error(`Document already exists. ID: ${id}`);
         await collection.insertOne(instance);
         return true;
     }
