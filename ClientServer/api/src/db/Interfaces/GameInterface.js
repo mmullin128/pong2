@@ -64,7 +64,7 @@ module.exports = class GameInterface extends Interface {
         return false;
     }
     async addPlayer(collectionName, id, playerCollection, playerId, team) {
-        if (this.checkPlayer(collectionName, id, playerId)) throw new Error(`Player already in game: ID = ${playerId}`);
+        if (await this.checkPlayer(collectionName, id, playerId)) throw new Error(`Player already in game: ID = ${playerId}`);
         const updateDoc = {
             $push : {
                 "players" : {
@@ -77,7 +77,7 @@ module.exports = class GameInterface extends Interface {
         return await this.update(collectionName, id, updateDoc);
     }
     async changeTeam(collectionName, id, playerId, team) {
-        if (!this.checkPlayer(collectionName, id, playerId)) throw new Error(`No such player in game: gameId = ${id} , playerId = ${playerId}`);
+        if (! await this.checkPlayer(collectionName, id, playerId)) throw new Error(`No such player in game: gameId = ${id} , playerId = ${playerId}`);
         const updateDoc = {
             $set : {
                 "players.$[i].team" : team

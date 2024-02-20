@@ -37,6 +37,7 @@ describe("Database: Game Interface", () => {
             console.error(err);  
         } finally {
             await disconnect(dbClient);
+            
         }
         
     })
