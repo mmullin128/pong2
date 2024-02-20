@@ -34,9 +34,9 @@ class Interface {
         await collection.deleteOne({ "id" : id });
         return true;
     }
-    async get(collectionName, id) {
+    async get(collectionName, id, projection={ "_id" : 0 }) {
         const collection = this.getCollection(collectionName);
-        const doc = await collection.findOne({ "id": id }, { "_id": 0 });
+        const doc = await collection.findOne({ "id": id }, projection);
         return doc;
     }
     getWait(collectionName, id, intervalms=50, timeOutms=2000) {
@@ -63,6 +63,7 @@ class Interface {
         const playerDoc = await this.get(collectionName, id);
         if (!playerDoc) throw new Error(`Nonexistent Player ID: ${id}`);
         //set data
+        await collection.updateOne()
         await collection.updateOne(
             { "id" : id },
             updateDoc,
