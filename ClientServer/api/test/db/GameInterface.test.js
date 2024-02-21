@@ -29,7 +29,7 @@ describe("Database: Game Interface", () => {
             ];
             expect(doc).toEqual(testGame);
             
-            testGame["players"]["team"] = testGame.teams[1];
+            testGame["players"][0]["team"] = testGame["teams"][1];
             const updateStatus = await gameInterface.changeTeam(testGame.collection, testGame.id, testPlayer.id, testGame.teams[1]);
             expect(updateStatus).toBe(true);
             doc = await gameInterface.get(testGame.collection, testGame.id);

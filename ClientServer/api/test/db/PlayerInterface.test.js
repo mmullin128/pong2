@@ -47,7 +47,7 @@ describe("Database: Player Interface", () => {
         await connect(dbClient);
         const playerInterface = new PlayerInterface(dbClient);
         let testPlayer2 = playerInterface.baseInstance;
-        testPlayer2["id"] = "test1";
+        testPlayer2["id"] = "test2";
         
         const insertStatus = await playerInterface.insert(testPlayer2.collection,testPlayer2.id,testPlayer2);
         testPlayer2["name"] = "new name"
@@ -62,7 +62,7 @@ describe("Database: Player Interface", () => {
         await connect(dbClient);
         const playerInterface = new PlayerInterface(dbClient);
         let testPlayer2 = playerInterface.baseInstance;
-        testPlayer2["id"] = "test2";
+        testPlayer2["id"] = "test3";
         const insertStatus = await playerInterface.insert(testPlayer2.collection,testPlayer2.id,testPlayer2);
         testPlayer2["playerData"]["length"] = "1";
         const updateStatus = await playerInterface.updatePlayerData(testPlayer2.collection, testPlayer2.id, testPlayer2.playerData);
@@ -77,7 +77,7 @@ describe("Database: Player Interface", () => {
         await connect(dbClient);
         const playerInterface = new PlayerInterface(dbClient);
         let testPlayer2 = playerInterface.baseInstance;
-        testPlayer2["id"] = "test3";
+        testPlayer2["id"] = "test4";
         const insertStatus = await playerInterface.insert(testPlayer2.collection,testPlayer2.id,testPlayer2);
         testPlayer2["status"] = "not idle";
         testPlayer2["time"] = Date.now();

@@ -86,9 +86,7 @@ module.exports = class GameInterface extends Interface {
         const options = {
             arrayFilters : [
                 {
-                    "element" : {
-                        "id" : playerId
-                    }
+                    "element.id" : playerId
                 }
             ]
         }
